@@ -44,24 +44,12 @@ def handle(regex, c, tokenlist, name, *, converter=_none):
 def tokenize(text):
     tokens = []
     for char in text:
-        # if re.match(TokenRe.NUMBER_RE.value, char):
-        #     tokens.append(gettok(TokenType.NUMBER, char,
-        #                          converter=int))
-        # elif re.match(TokenRe.ADD_RE.value, char):
-        #     tokens.append(gettok(TokenType.ADD, char))
-        # elif re.match(TokenRe.SUB_RE.value, char):
-        #     tokens.append(gettok(TokenType.SUB, char))
-        # elif re.match(TokenRe.MUL_RE.value, char):
-        #     tokens.append(gettok(TokenType.MUL, char))
-        # elif re.match(TokenRe.DIV_RE.value, char):
-        #     tokens.append(gettok(TokenType.DIV, char))
-        # elif re.match(TokenRe.NUMBSEP_RE.value, char):
-        #     tokens.append(gettok(TokenType.NUMBSEP, char))
         handle(TokenRe.NUMBER_RE, char, tokens, TokenType.NUMBER, converter=int)
         handle(TokenRe.ADD_RE, char, tokens, TokenType.ADD)
         handle(TokenRe.SUB_RE, char, tokens, TokenType.SUB)
         handle(TokenRe.MUL_RE, char, tokens, TokenType.MUL)
         handle(TokenRe.DIV_RE, char, tokens, TokenType.DIV)
+        handle(TokenRe.NUMBSEP_RE, char, tokens, TokenType.NUMBSEP)
 
     return tokens
 
