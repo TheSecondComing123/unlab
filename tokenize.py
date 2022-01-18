@@ -61,6 +61,7 @@ def tokenize(text):
         handle(TokenRe.ADD_RE, char, tokens, TokenType.ADD)
         handle(TokenRe.SUB_RE, char, tokens, TokenType.SUB)
         handle(TokenRe.MUL_RE, char, tokens, TokenType.MUL)
+        handle(TokenRe.DIV_RE, char, tokens, TokenType.DIV)
 
     return tokens
 
