@@ -21,15 +21,20 @@ class Token:
         return f"Token(name={self.name}, value={self.value})"
 
 
+_none = lambda x: x
+
+
+def gettok(name, val, *, converter=_none):
+    return Token(name.value, converter(val))
+
+
 def tokenize(text):
     tokens = []
     for char in text:
         if re.match(TokenRe.NUMBER_RE.value, char):
-            tokens.append(Token(TokenType.NUMBER.value, int(char)))
+            tokens.append(gettok(TokenType.NUMBER, char,
+                                 converter=int))
         elif re.match(TokenRe.ADD_RE.value, char):
-            tokens.append(Token(TokenType.ADD.value, char))
+            tokens.append(gettok(TokenType.ADD, char))
 
     return tokens
-
-
-print(tokenize("3+3"))
