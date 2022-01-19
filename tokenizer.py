@@ -24,8 +24,8 @@ class Token:
 
 def tokenize(text):
     tokens = []
-    for ind, char in enumerate(text):
-        if re.match(TokenRe.NUMBER_RE.value, char):
+    for ind in range(len(text)):
+        if re.match(TokenRe.NUMBER_RE.value, text[ind]):
             numind = ind
             num = ""
             try:
@@ -35,12 +35,14 @@ def tokenize(text):
             except IndexError:
                 pass
 
+            ind += len(num)-1
+
             tokens.append(Token(TokenType.NUMBER, int(num)))
-        elif re.match(TokenRe.MATHOP_RE.value, char):
-            if char == "+":
-                tokens.append(Token(TokenType.ADD, char))
+        elif re.match(TokenRe.MATHOP_RE.value, text[ind]):
+            if text[ind] == "+":
+                tokens.append(Token(TokenType.ADD, text[ind]))
 
     return tokens
 
 
-print(tokenize("+4 49"))
+print(tokenize("+49 8"))
