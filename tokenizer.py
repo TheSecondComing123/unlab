@@ -10,7 +10,7 @@ class TokenType(enum.Enum):
 class RegEx(enum.Enum):
     Number = r"\d"
     Function = r"\D"
-    Ignore = r" "
+    IgnoreToken = r" "
 
 
 class Token:
@@ -28,7 +28,7 @@ def tokenize(text):
     number = ""
 
     for ind, char in enumerate(text):
-        if re.match(RegEx.Ignore.value, char):
+        if re.match(RegEx.IgnoreToken.value, char):
             next
         elif re.match(RegEx.Number.value, char):
             if not current_number:
@@ -53,4 +53,4 @@ def tokenize(text):
 
 
 if __name__ == "__main__":
-    print(tokenize("+7 59*89 7"))
+    print(tokenize("+7 59*89 / 207"))
