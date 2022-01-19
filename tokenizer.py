@@ -3,14 +3,14 @@ import re
 
 
 class TokenType(enum.Enum):
-    NUMBER = "number"
-    MATHOP = "mathop"
-    ADD = "add"
+    Number = "number"
+    Function = "function"
 
 
-class TokenRe(enum.Enum):
-    NUMBER_RE = r"\d"
-    MATHOP_RE = r"[+\-*/]"
+class RegEx(enum.Enum):
+    Number = r"\d"
+    Function = r"\D"
+    Ignore = r" "
 
 
 class Token:
@@ -19,28 +19,38 @@ class Token:
         self.value = value
 
     def __repr__(self):
-        return f"Token(name={self.name}, value={self.value})"
+        return f'Token(name={self.name}, value="{self.value}")'
 
 
 def tokenize(text):
     tokens = []
-    for ind, char in enumerate(text):
-        if re.match(TokenRe.NUMBER_RE.value, char):
-            numind = ind
-            num = ""
-            try:
-                while re.match(TokenRe.NUMBER_RE.value, text[numind]):
-                    num += text[numind]
-                    numind += 1
-            except IndexError:
-                pass
+    current_number = False
+    number = ""
 
-            tokens.append(Token(TokenType.NUMBER, int(num)))
-        elif re.match(TokenRe.MATHOP_RE.value, char):
-            if char == "+":
-                tokens.append(Token(TokenType.ADD, char))
+    for ind, char in enumerate(text):
+        if re.match(RegEx.Ignore.value, char):
+            next
+        elif re.match(RegEx.Number.value, char):
+            if not current_number:
+                current_number = True
+                number += char
+            else:
+                number += char
+
+        elif re.match(RegEx.Function.value, char):
+            tokens.append(Token(TokenType.Function, char))
+
+        if not re.match(RegEx.Number.value, char):
+            if current_number:
+                tokens.append(Token(TokenType.Number, number))
+                current_number = False
+                number = ""
+
+    if current_number:
+        tokens.append(Token(TokenType.Number, number))
 
     return tokens
 
 
-print(tokenize("+4 49"))
+if __name__ == "__main__":
+    print(tokenize("+7 59*89 7"))
