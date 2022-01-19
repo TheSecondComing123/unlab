@@ -52,6 +52,5 @@ def tokenize(text):
     return tokens
 
 
-
 if __name__ == "__main__":
     print(tokenize("+7 59*89 7"))
