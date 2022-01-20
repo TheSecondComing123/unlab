@@ -3,18 +3,18 @@ import re
 
 
 class TokenType(enum.Enum):
-    Number = "number"
-    Function = "function"
+    NUMBER = "number"
+    FUNCTION = "function"
 
 
 class RegEx(enum.Enum):
-    Number = r"\d"
-    Function = r"\D"
-    IgnoreToken = r" "
+    NUMBER = r"\d"
+    FUNCTION = r"\D"
+    IGNORE_TOKEN = r" "
 
 
 class Token:
-    def __init__(self, name, value):
+    def __init__(self, name: TokenType, value: str):
         self.name = name
         self.value = value
 
@@ -22,24 +22,24 @@ class Token:
         return f'Token(name={self.name}, value="{self.value}")'
 
 
-def tokenize(text):
+def tokenize(text: str) -> list[Token]:
     tokens = []
     current_number = False
     number = ""
 
     for ind, char in enumerate(text):
-        if not re.match(RegEx.Number.value, char):
+        if not re.match(RegEx.NUMBER.value, char):
             if current_number:
-                tokens.append(Token(TokenType.Number, number))
+                tokens.append(Token(TokenType.NUMBER, number))
                 current_number = False
                 number = ""
-        if re.match(RegEx.IgnoreToken.value, char):
+        if re.match(RegEx.IGNORE_TOKEN.value, char):
             next
 
-        elif re.match(RegEx.Function.value, char):
-            tokens.append(Token(TokenType.Function, char))
+        elif re.match(RegEx.FUNCTION.value, char):
+            tokens.append(Token(TokenType.FUNCTION, char))
 
-        elif re.match(RegEx.Number.value, char):
+        elif re.match(RegEx.NUMBER.value, char):
             if not current_number:
                 current_number = True
                 number += char
@@ -47,7 +47,7 @@ def tokenize(text):
                 number += char
 
     if current_number:
-        tokens.append(Token(TokenType.Number, number))
+        tokens.append(Token(TokenType.NUMBER, number))
 
     return tokens
 
