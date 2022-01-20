@@ -28,23 +28,23 @@ def tokenize(text):
     number = ""
 
     for ind, char in enumerate(text):
+        if not re.match(RegEx.Number.value, char):
+            if current_number:
+                tokens.append(Token(TokenType.Number, number))
+                current_number = False
+                number = ""
         if re.match(RegEx.IgnoreToken.value, char):
             next
+
+        elif re.match(RegEx.Function.value, char):
+            tokens.append(Token(TokenType.Function, char))
+
         elif re.match(RegEx.Number.value, char):
             if not current_number:
                 current_number = True
                 number += char
             else:
                 number += char
-
-        elif re.match(RegEx.Function.value, char):
-            tokens.append(Token(TokenType.Function, char))
-
-        if not re.match(RegEx.Number.value, char):
-            if current_number:
-                tokens.append(Token(TokenType.Number, number))
-                current_number = False
-                number = ""
 
     if current_number:
         tokens.append(Token(TokenType.Number, number))
