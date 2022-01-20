@@ -53,8 +53,5 @@ def tokenize(text):
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-    print(tokenize("+7 59 *89 / 207"))
-=======
     print(tokenize("+7 59*89 / 207"))
->>>>>>> c7ecc7255206784beefa804deb9f300929530038
+    print(tokenize("+1 +3 4"))
