@@ -16,7 +16,6 @@ j = 4906
 k = 1024
 l = 128
 n = -1
-functions = {"+": [2, add]}
 p0 = 10
 p1 = 16
 p2 = 256
@@ -27,6 +26,4 @@ p6 = 4906
 p7 = 1024
 p8 = 128
 
-
-def add(a1, a2):
-    return a1 + a2
+functions = {"+": [2, add]}
