@@ -49,6 +49,9 @@ def tokenize(text: str) -> list[Token]:
                 current_number = False
                 number = ""
 
+        if re.match(RegEx.IGNORE_TOKEN.value, char):
+            continue
+
         if IsType.ignore_token(char):
             continue
 
