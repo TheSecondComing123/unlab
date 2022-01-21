@@ -1,5 +1,7 @@
+from ast import Is
 import enum
 import re
+from elements import elements
 
 
 class TokenType(enum.Enum):
@@ -9,8 +11,21 @@ class TokenType(enum.Enum):
 
 class RegEx(enum.Enum):
     NUMBER = r"\d"
-    FUNCTION = r"\D"
     IGNORE_TOKEN = r" "
+
+
+class IsType:
+    @staticmethod
+    def number(char):
+        return bool(re.match(RegEx.NUMBER.value, char))
+
+    @staticmethod
+    def function(char):
+        return char in list(elements.keys())
+
+    @staticmethod
+    def ignore_token(char):
+        return bool(re.match(RegEx.IGNORE_TOKEN.value, char))
 
 
 class Token:
@@ -28,18 +43,22 @@ def tokenize(text: str) -> list[Token]:
     number = ""
 
     for ind, char in enumerate(text):
-        if not re.match(RegEx.NUMBER.value, char):
+        if not IsType.number(char):
             if current_number:
                 tokens.append(Token(TokenType.NUMBER, number))
                 current_number = False
                 number = ""
+
         if re.match(RegEx.IGNORE_TOKEN.value, char):
             continue
 
-        elif re.match(RegEx.FUNCTION.value, char):
+        if IsType.ignore_token(char):
+            continue
+
+        elif IsType.function(char):
             tokens.append(Token(TokenType.FUNCTION, char))
 
-        elif re.match(RegEx.NUMBER.value, char):
+        elif IsType.number(char):
             if not current_number:
                 current_number = True
                 number += char
