@@ -34,7 +34,11 @@ def tokenize(text: str) -> list[Token]:
                 current_number = False
                 number = ""
         if re.match(RegEx.IGNORE_TOKEN.value, char):
+<<<<<<< HEAD
             continue
+=======
+            next
+>>>>>>> af2acae59c9c7774c93facd0c06742c09a4c736d
 
         elif re.match(RegEx.FUNCTION.value, char):
             tokens.append(Token(TokenType.FUNCTION, char))
