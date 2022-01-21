@@ -1,3 +1,5 @@
+from operator import add
+
 g = "Hello, World!"
 w = "Hello World"
 b = "0123456789"
@@ -14,11 +16,7 @@ j = 4906
 k = 1024
 l = 128
 n = -1
-<<<<<<< HEAD
-
 functions = {"+": [2, add]}
-=======
->>>>>>> f5d542f9e5a4c98f4b893ae132066dec2c61ebeb
 p0 = 10
 p1 = 16
 p2 = 256
