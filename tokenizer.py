@@ -1,4 +1,3 @@
-from ast import Is
 import enum
 import re
 from elements import elements
@@ -16,15 +15,15 @@ class RegEx(enum.Enum):
 
 class IsType:
     @staticmethod
-    def number(char):
+    def number(char: str):
         return bool(re.match(RegEx.NUMBER.value, char))
 
     @staticmethod
-    def function(char):
+    def function(char: str):
         return char in list(elements.keys())
 
     @staticmethod
-    def ignore_token(char):
+    def ignore_token(char: str):
         return bool(re.match(RegEx.IGNORE_TOKEN.value, char))
 
 
@@ -48,9 +47,6 @@ def tokenize(text: str) -> list[Token]:
                 tokens.append(Token(TokenType.NUMBER, number))
                 current_number = False
                 number = ""
-
-        if re.match(RegEx.IGNORE_TOKEN.value, char):
-            continue
 
         if IsType.ignore_token(char):
             continue
