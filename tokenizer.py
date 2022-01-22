@@ -68,5 +68,5 @@ def tokenize(text: str) -> list[Token]:
 
 
 if __name__ == "__main__":
-    print(tokenize("+7 59*89 / 207"))
+    print(tokenize("+7 59*89 / 207"), end="\n\n")
     print(tokenize("+1 +3 4"))
