@@ -1,4 +1,4 @@
-from tokenizer import TokenType
+from tokenizer import TokenType, tokenize
 from elements import elements
 
 
@@ -30,8 +30,13 @@ def parse(tokens):
                 parse_list += token
             elif in_function and tokens_not_grouped == 0:  # all tokens are grouped
                 in_function = 0
-                parse_list.append(Group(
-                    group))  # add the function-argument pair to the group list
+                parse_list.append(
+                    Group(group)
+                )  # add the function-argument pair to the group list
             else:
                 group += token  # we are in a function that should be grouped
                 tokens_not_grouped -= 1  # -1 because then the tokens that should be grouped are reduced by 1
+
+
+if __name__ == "__main__":
+    print(parse(tokenize("+2 3")))
