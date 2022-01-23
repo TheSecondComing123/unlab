@@ -14,12 +14,13 @@ def flatten(items):
             yield x
 
 
-def parse(tokens):
+def parse(token_list: list[Token]):
+    """Main parse function"""
     group = []
     ungrouped_tokens = 0
     in_function = False
     parse_list = []
-    tokens = deque(tokens)
+    tokens = deque(token_list)
     ind = 0
 
     while tokens:
@@ -27,36 +28,40 @@ def parse(tokens):
         ind += 1
 
         if token.name == TokenType.FUNCTION:
-            if ungrouped_tokens == 0:
+            if ungrouped_tokens == 0:  # If function is not nested in another one
                 ungrouped_tokens = elements[token.value][0]
                 in_function = True
                 group.append(token)
-            elif ungrouped_tokens > 0:
+            elif ungrouped_tokens > 0:  # If function is nested
                 c_tokens = tokens.copy()
-                c_tokens.appendleft(token)
+                c_tokens.appendleft(token)  # Make copy of tokens with the current token
 
-                parsed = parse(c_tokens)
+                parsed = parse(list(c_tokens))
 
-                length = len(list(flatten(parsed)))
+                length = len(list(flatten(parsed)))  # Get the length of parsed
 
                 for _ in range(length):
-                    tokens.popleft() if tokens else None
+                    tokens.popleft() if tokens else None  # For every token parsed, pop from main token list
 
                 for sub_group in parsed:
-                    group.append(sub_group)
+                    group.append(sub_group)  # Append every token/group to group
 
                 in_function = False
+                ungrouped_tokens = 0
 
         if token.name == TokenType.NUMBER:
             if not in_function:
                 parse_list.append(token)
-            elif in_function and ungrouped_tokens <= 1:
+
+            # If in function and the last token to be grouped
+            elif in_function and ungrouped_tokens == 1:
                 group.append(token)
                 ungrouped_tokens -= 1
-                in_function = 0
+                in_function = False
                 parse_list.append(group)
                 group = []
-            else:
+
+            else:  # If in function
                 group.append(token)
                 ungrouped_tokens -= 1
 

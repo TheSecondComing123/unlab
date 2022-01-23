@@ -4,16 +4,22 @@ from elements import elements
 
 
 class TokenType(enum.Enum):
+    """Class for all Tokens"""
+
     NUMBER = "number"
     FUNCTION = "function"
 
 
 class RegEx(enum.Enum):
+    """Regex helping class for IsType"""
+
     NUMBER = r"\d"
     IGNORE_TOKEN = r" "
 
 
 class IsType:
+    """Class to check which token a string is"""
+
     @staticmethod
     def number(char: str):
         return bool(re.match(RegEx.NUMBER.value, char))
@@ -28,15 +34,18 @@ class IsType:
 
 
 class Token:
+    """Token class"""
+
     def __init__(self, name: TokenType, value: str):
         self.name = name
         self.value = value
 
     def __repr__(self):
-        return f'{self.value}'
+        return f"{self.value}"  # For testing purposes
 
 
 def tokenize(text: str) -> list[Token]:
+    """Main tokenize function"""
     tokens = []
     current_number = False
     number = ""
