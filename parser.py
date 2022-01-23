@@ -14,63 +14,34 @@ def flatten(items):
             yield x
 
 
-def parse(token_list: list[Token]):
-    """Main parse function"""
-    group = []
-    ungrouped_tokens = 0
-    in_function = False
+def parse(tokens):
     parse_list = []
-    tokens = deque(token_list)
-    ind = 0
+    tokens = deque(tokens)
 
     while tokens:
         token = tokens.popleft()
-        ind += 1
 
         if token.name == TokenType.FUNCTION:
-            if ungrouped_tokens == 0:  # If function is not nested in another one
-                ungrouped_tokens = elements[token.value][0]
-                in_function = True
-                group.append(token)
-            elif ungrouped_tokens > 0:  # If function is nested
-                c_tokens = tokens.copy()
-                c_tokens.appendleft(token)  # Make copy of tokens with the current token
-
-                parsed = parse(list(c_tokens))
-
-                length = len(list(flatten(parsed)))  # Get the length of parsed
-
-                for _ in range(length):
-                    tokens.popleft() if tokens else None  # For every token parsed, pop from main token list
-
-                for sub_group in parsed:
-                    group.append(sub_group)  # Append every token/group to group
-
-                in_function = False
-                ungrouped_tokens = 0
-
-        if token.name == TokenType.NUMBER:
-            if not in_function:
-                parse_list.append(token)
-
-            # If in function and the last token to be grouped
-            elif in_function and ungrouped_tokens == 1:
-                group.append(token)
-                ungrouped_tokens -= 1
-                in_function = False
-                parse_list.append(group)
-                group = []
-
-            else:  # If in function
-                group.append(token)
-                ungrouped_tokens -= 1
-
-    if group:
-        parse_list.append(group)
+            arity = elements[token.value][0]
+            temp = parse(tokens)  # We call parse on the remaining token
+            # list so that it groups whatever is left - this works
+            # because complete functions (functions and a complete
+            # number of constants/nilads) form single units, and non-
+            # complete functions (functions and a non-complete number
+            # of constants/nilads) can use those single units.
+            parse_list.append([token] + temp[:arity])  # Add a list of
+            # this token plus however many grouped tokens the arity
+            # requires
+            parse_list += temp[arity:]  # add the rest of the parsed
+            # tokens
+            break
+            # exit the loop because everything is parsed.
+        elif token.name == TokenType.NUMBER:
+            parse_list.append(token) # Numbers don't need anything else
 
     return parse_list
 
 
 if __name__ == "__main__":
-    print(parse(tokenize("+1+3+4 5")))
-    print(parse(tokenize("+1+3 4+5 6")))
+    print(parse(tokenize("+1 +3 +4 5")))
+    print(parse(tokenize("+1 +3 4 +5 6")))
