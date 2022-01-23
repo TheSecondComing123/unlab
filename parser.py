@@ -42,7 +42,9 @@ def parse(tokens):
                 for _ in range(length):
                     tokens.popleft() if tokens else None
 
-                group.append(parsed[0])
+                for sub_group in parsed:
+                    group.append(sub_group)
+
                 in_function = False
 
         if token.name == TokenType.NUMBER:
@@ -65,4 +67,5 @@ def parse(tokens):
 
 
 if __name__ == "__main__":
-    print(parse(tokenize("+1 + 3 4 +5 6")))
+    print(parse(tokenize("+1+3+4 5")))
+    print(parse(tokenize("+1+3 4+5 6")))
