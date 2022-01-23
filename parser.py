@@ -22,6 +22,10 @@ def parse(tokens):
         token = tokens.popleft()
 
         if token.name == TokenType.FUNCTION:
+            if not tokens: # account for there not being anything
+                           # after this token by just breaking the loop
+                parse_list.append(token)
+                break
             arity = elements[token.value][0]
             temp = parse(tokens)  # We call parse on the remaining token
             # list so that it groups whatever is left - this works
