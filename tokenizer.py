@@ -41,7 +41,7 @@ class Token:
         self.value = value
 
     def __repr__(self):
-        return f"{self.value}"  # For testing purposes
+        return f'Token(name={self.name}, value="{self.value}")'
 
 
 def tokenize(text: str) -> list[Token]:
@@ -50,7 +50,7 @@ def tokenize(text: str) -> list[Token]:
     current_number = False
     number = ""
 
-    for ind, char in enumerate(text):
+    for char in text:
         if not IsType.number(char):
             if current_number:
                 tokens.append(Token(TokenType.NUMBER, number))
@@ -77,5 +77,5 @@ def tokenize(text: str) -> list[Token]:
 
 
 if __name__ == "__main__":
-    print(tokenize("+7 59*89 / 207"), end="\n\n")
-    print(tokenize("+1 +3 4"))
+    print(tokenize("+7 59*89 / 207"))
+    print(str(tokenize("+1 +3 4")))

@@ -1,33 +1,29 @@
-from typing import Iterable
-
 from tokenizer import *
 from collections import deque
 
 
-def flatten(items):
-    """Yield items from any nested iterable; see Reference."""
-    for x in items:
-        if isinstance(x, Iterable) and not isinstance(x, (str, bytes)):
-            for sub_x in flatten(x):
-                yield sub_x
-        else:
-            yield x
+def parse(token_list: list[Token]) -> list[Token]:
+    """Main parse function
 
+    Args:
+        token_list (list[Token]): Tokenized string, a list of Token elements
 
-def parse(tokens):
+    Returns:
+        list[Token]: Return parsed list, grouped Token elements
+    """
     parse_list = []
-    tokens = deque(tokens)
+    tokens = deque(token_list)
 
     while tokens:
         token = tokens.popleft()
 
         if token.name == TokenType.FUNCTION:
-            if not tokens: # account for there not being anything
-                           # after this token by just breaking the loop
+            if not tokens:  # account for there not being anything
+                # after this token by just breaking the loop
                 parse_list.append(token)
                 break
             arity = elements[token.value][0]
-            temp = parse(tokens)  # We call parse on the remaining token
+            temp = parse(list(tokens))  # We call parse on the remaining token
             # list so that it groups whatever is left - this works
             # because complete functions (functions and a complete
             # number of constants/nilads) form single units, and non-
@@ -41,7 +37,7 @@ def parse(tokens):
             break
             # exit the loop because everything is parsed.
         elif token.name == TokenType.NUMBER:
-            parse_list.append(token) # Numbers don't need anything else
+            parse_list.append(token)  # Numbers don't need anything else
 
     return parse_list
 
