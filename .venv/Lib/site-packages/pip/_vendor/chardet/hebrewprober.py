@@ -239,12 +239,10 @@ class HebrewProber(CharSetProber):
                         # case (2) [-2:not space][-1:Non-Final letter][
                         #  cur:space]
                         self._final_char_visual_score += 1
-            else:
-                # Not standing on a space
-                if ((self._before_prev == ' ') and
+            elif ((self._before_prev == ' ') and
                         (self.is_final(self._prev)) and (cur != ' ')):
-                    # case (3) [-2:space][-1:final letter][cur:not space]
-                    self._final_char_visual_score += 1
+                # case (3) [-2:space][-1:final letter][cur:not space]
+                self._final_char_visual_score += 1
             self._before_prev = self._prev
             self._prev = cur
 

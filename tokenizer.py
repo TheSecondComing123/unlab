@@ -52,11 +52,10 @@ def tokenize(text: str) -> List[Token]:
     number = ""
 
     for char in text:
-        if not IsType.number(char):
-            if current_number:
-                tokens.append(Token(TokenType.NUMBER, number))
-                current_number = False
-                number = ""
+        if not IsType.number(char) and current_number:
+            tokens.append(Token(TokenType.NUMBER, number))
+            current_number = False
+            number = ""
 
         if IsType.ignore_token(char):
             continue
@@ -67,10 +66,7 @@ def tokenize(text: str) -> List[Token]:
         elif IsType.number(char):
             if not current_number:
                 current_number = True
-                number += char
-            else:
-                number += char
-
+            number += char
     if current_number:
         tokens.append(Token(TokenType.NUMBER, number))
 
@@ -79,4 +75,4 @@ def tokenize(text: str) -> List[Token]:
 
 if __name__ == "__main__":
     print(tokenize("+7 59*89 / 207"))
-    print(str(tokenize("+1 +3 4")))
+    print(tokenize("+1 +3 4"))
