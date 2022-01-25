@@ -4,10 +4,15 @@ from collections import deque
 
 def parse(token_list: list[Token]) -> list[Token]:
     """Main parse function
+<<<<<<< HEAD
+    Args:
+        token_list (list[Token]): Tokenized string, a list of Token elements
+=======
 
     Args:
         token_list (list[Token]): Tokenized string, a list of Token elements
 
+>>>>>>> 0ececbb875227f04dd5030c7b5f735db144a5977
     Returns:
         list[Token]: Return parsed list, grouped Token elements
     """
