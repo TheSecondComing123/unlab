@@ -2,6 +2,8 @@ import enum
 import re
 from elements import elements
 
+from typing import List
+
 
 class TokenType(enum.Enum):
     NUMBER = "number"
@@ -36,7 +38,7 @@ class Token:
         return f'Token(name={self.name}, value="{self.value}")'
 
 
-def tokenize(text: str) -> list[Token]:
+def tokenize(text: str) -> List[Token]:
     tokens = []
     current_number = False
     number = ""
