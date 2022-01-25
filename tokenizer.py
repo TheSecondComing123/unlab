@@ -2,6 +2,8 @@ import enum
 import re
 from elements import elements
 
+from typing import List
+
 
 class TokenType(enum.Enum):
     """Class for all Tokens"""
@@ -44,8 +46,12 @@ class Token:
         return f'Token(name={self.name}, value="{self.value}")'
 
 
+<<<<<<< HEAD
+def tokenize(text: str) -> List[Token]:
+=======
 def tokenize(text: str) -> list[Token]:
     """Main tokenize function"""
+>>>>>>> 0ececbb875227f04dd5030c7b5f735db144a5977
     tokens = []
     current_number = False
     number = ""
