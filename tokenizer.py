@@ -6,16 +6,22 @@ from typing import List
 
 
 class TokenType(enum.Enum):
+    """Class for all Tokens"""
+
     NUMBER = "number"
     FUNCTION = "function"
 
 
 class RegEx(enum.Enum):
+    """Regex helping class for IsType"""
+
     NUMBER = r"\d"
     IGNORE_TOKEN = r" "
 
 
 class IsType:
+    """Class to check which token a string is"""
+
     @staticmethod
     def number(char: str):
         return bool(re.match(RegEx.NUMBER.value, char))
@@ -30,6 +36,8 @@ class IsType:
 
 
 class Token:
+    """Token class"""
+
     def __init__(self, name: TokenType, value: str):
         self.name = name
         self.value = value
@@ -38,12 +46,17 @@ class Token:
         return f'Token(name={self.name}, value="{self.value}")'
 
 
+<<<<<<< HEAD
 def tokenize(text: str) -> List[Token]:
+=======
+def tokenize(text: str) -> list[Token]:
+    """Main tokenize function"""
+>>>>>>> 0ececbb875227f04dd5030c7b5f735db144a5977
     tokens = []
     current_number = False
     number = ""
 
-    for ind, char in enumerate(text):
+    for char in text:
         if not IsType.number(char):
             if current_number:
                 tokens.append(Token(TokenType.NUMBER, number))
@@ -70,5 +83,5 @@ def tokenize(text: str) -> List[Token]:
 
 
 if __name__ == "__main__":
-    print(tokenize("+7 59*89 / 207"), end="\n\n")
-    print(tokenize("+1 +3 4"))
+    print(tokenize("+7 59*89 / 207"))
+    print(str(tokenize("+1 +3 4")))
