@@ -1,5 +1,3 @@
-from operator import add
-
 g = "Hello, World!"
 w = "Hello World"
 b = "0123456789"
@@ -25,3 +23,9 @@ p5 = 2048
 p6 = 4906
 p7 = 1024
 p8 = 128
+
+
+def add(args_list):
+    a1 = args_list[0].value
+    a2 = args_list[1].value
+    return a1 + a2
