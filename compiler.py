@@ -1,11 +1,11 @@
-from parser import parse
-from tokenizer import tokenize
+from parse import parse
 from elements import elements
+from tokenizer import tokenize
 
 
 def compile(tokens):
     for i, sub in enumerate(tokens.copy()):
-        if isinstance(sub[0], list):
+        if isinstance(sub[2], list):
             val = compile(sub[0])
         else:
             func = sub[0]
@@ -13,8 +13,8 @@ def compile(tokens):
             val = elements[func.value][1](args)
             tokens[i] = val
 
-    return tokens
+    return tokens[0]
 
 
 if __name__ == "__main__":
-    print(compile(parse(tokenize("+1 23"))))
+    print(compile(parse(tokenize("+1 2"))))
