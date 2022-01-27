@@ -2,8 +2,6 @@ import enum
 import re
 from elements import elements
 
-from typing import List
-
 
 class TokenType(enum.Enum):
     """Class for all Tokens"""
@@ -38,15 +36,15 @@ class IsType:
 class Token:
     """Token class"""
 
-    def __init__(self, name: TokenType, value: str):
+    def __init__(self, name: TokenType, value):
         self.name = name
         self.value = value
 
     def __repr__(self):
-        return f'Token(name={self.name}, value="{self.value}")'
+        return f"Token(name={self.name}, value={repr(self.value)})"
 
 
-def tokenize(text: str) -> List[Token]:
+def tokenize(text: str) -> list[Token]:
     tokens = []
     current_number = False
     number = ""
@@ -54,7 +52,7 @@ def tokenize(text: str) -> List[Token]:
     for char in text:
         if not IsType.number(char):
             if current_number:
-                tokens.append(Token(TokenType.NUMBER, number))
+                tokens.append(Token(TokenType.NUMBER, int(number)))
                 current_number = False
                 number = ""
 
@@ -72,11 +70,11 @@ def tokenize(text: str) -> List[Token]:
                 number += char
 
     if current_number:
-        tokens.append(Token(TokenType.NUMBER, number))
+        tokens.append(Token(TokenType.NUMBER, int(number)))
 
     return tokens
 
 
 if __name__ == "__main__":
     print(tokenize("+7 59*89 / 207"))
-    print(str(tokenize("+1 +3 4")))
+    print(tokenize("+1 +3 4"))
