@@ -1,5 +1,6 @@
-from tokenizer import *
+from tokenizer import Token, TokenType, tokenize
 from collections import deque
+from elements import elements
 
 
 def parse(token_list: list[Token]) -> list[Token]:
