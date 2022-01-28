@@ -1,20 +1,45 @@
-from parse import parse
+from tokenizer import tokenize, Token, TokenType
 from elements import elements
-from tokenizer import tokenize
+from parse import parse
+from helper_functions import to_python_index
 
 
-def compile(tokens):
-    for i, sub in enumerate(tokens.copy()):
-        if isinstance(sub[2], list):
-            val = compile(sub[0])
-        else:
-            func = sub[0]
-            args = sub[1:]
+class Interpreter:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.position = []
+
+    def main(self, tokens):
+        self.position.append(0)
+
+        for index, sub in enumerate(tokens):
+            self.position[-1] = index
+            if isinstance(sub, list):
+                val = self.main(sub)
+                del self.position[-1]
+
+                exec(to_python_index("self.tokens", self.position[:-1]) + f"={val[0]}")
+
+        try:
+            func = tokens[0]
+            args = tokens[1:]
             val = elements[func.value][1](args)
-            tokens[i] = val
+            exec(to_python_index("self.tokens", self.position[:-1]) + f"={val}")
 
-    return tokens[0]
+            return self.tokens
+        except:
+            return self.tokens
 
 
 if __name__ == "__main__":
-    print(compile(parse(tokenize("+1 2"))))
+    interpreter = Interpreter(parse(tokenize("+1 2")))
+    print(interpreter.main(interpreter.tokens))
+
+    interpreter = Interpreter(parse(tokenize("+1 +2 3")))
+    print(interpreter.main(interpreter.tokens))
+
+    interpreter = Interpreter(parse(tokenize("++1 2 7")))
+    print(interpreter.main(interpreter.tokens))
+
+    interpreter = Interpreter(parse(tokenize("++1 2+3 4")))
+    print(interpreter.main(interpreter.tokens))
