@@ -1,3 +1,5 @@
+from tokenizer import Token, TokenType
+
 g = "Hello, World!"
 w = "Hello World"
 b = "0123456789"
@@ -28,4 +30,4 @@ p8 = 128
 def add(args_list):
     a1 = args_list[0].value
     a2 = args_list[1].value
-    return a1 + a2
+    return Token(TokenType.NUMBER, a1 + a2)

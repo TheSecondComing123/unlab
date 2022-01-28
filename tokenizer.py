@@ -1,6 +1,6 @@
 import enum
 import re
-from elements import elements
+from codepage import codepage
 
 
 class TokenType(enum.Enum):
@@ -26,7 +26,7 @@ class IsType:
 
     @staticmethod
     def function(char: str):
-        return char in list(elements.keys())
+        return char in codepage
 
     @staticmethod
     def ignore_token(char: str):
