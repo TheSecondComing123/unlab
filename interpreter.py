@@ -27,7 +27,7 @@ class Interpreter:
             exec(to_python_index("self.tokens", self.position[:-1]) + f"={val}")
 
             return self.tokens
-        except:
+        except (KeyError, AttributeError):
             return self.tokens
 
 
