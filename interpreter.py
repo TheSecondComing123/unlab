@@ -31,15 +31,13 @@ class Interpreter:
             return self.tokens
 
 
+    @staticmethod
+    def interprete(tokens):
+        runner = Interpreter(tokens)
+        return runner.main(runner.tokens).value
+
+
 if __name__ == "__main__":
-    interpreter = Interpreter(parse(tokenize("+1 2")))
-    print(interpreter.main(interpreter.tokens))
-
-    interpreter = Interpreter(parse(tokenize("+1 +2 3")))
-    print(interpreter.main(interpreter.tokens))
-
-    interpreter = Interpreter(parse(tokenize("++1 2 7")))
-    print(interpreter.main(interpreter.tokens))
-
-    interpreter = Interpreter(parse(tokenize("++1 2+3 4")))
-    print(interpreter.main(interpreter.tokens))
+    print(Interpreter.interprete(parse(tokenize("+1 3"))))
+    print(Interpreter.interprete(parse(tokenize("+ +1 3 4"))))
+    print(Interpreter.interprete(parse(tokenize("+ +1 3 +4 5"))))
