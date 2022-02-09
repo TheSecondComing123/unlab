@@ -1,43 +1,30 @@
-from tokenizer import tokenize, Token, TokenType
+from tokenizer import tokenize, Token
 from elements import elements
 from parse import parse
-from helper_functions import to_python_index
+from helper import TokenList
 
 
-class Interpreter:
-    def __init__(self, tokens):
-        self.tokens = tokens
-        self.position = []
+def interprete(tokens: list[Token]) -> TokenList:
+    if type(tokens) is list:  # If tokens are grouped
+        if len(tokens) == 1 and type(tokens[0]) is list:
+            # At the beginning, tokens is a list like [[+, 1, 2]], so
+            # just take the first element
+            tokens = tokens[0]
 
-    def main(self, tokens):
-        self.position.append(0)
+        func = elements.get(tokens[0].value)  # Get the lambda of the func part
 
-        for index, sub in enumerate(tokens):
-            self.position[-1] = index
-            if isinstance(sub, list):
-                val = self.main(sub)
-                del self.position[-1]
+        # Exit if func does not exist else get the lambda of the element
+        func = exit() if func is None else func[1]
 
-                exec(to_python_index("self.tokens", self.position[:-1]) + f"={val[0]}")
+        args = map(interprete, tokens[1:])  # Map interprete to each argument
 
-        try:
-            func = tokens[0]
-            args = tokens[1:]
-            val = elements[func.value][1](args)
-            exec(to_python_index("self.tokens", self.position[:-1]) + f"={val}")
+        return func(*list(args))  # Call func on every interpreted argument
 
-            return self.tokens
-        except (KeyError, AttributeError):
-            return self.tokens
-
-
-    @staticmethod
-    def interprete(tokens):
-        runner = Interpreter(tokens)
-        return runner.main(runner.tokens).value
+    else:  # when tokens is a single integer
+        return tokens
 
 
 if __name__ == "__main__":
-    print(Interpreter.interprete(parse(tokenize("+1 3"))))
-    print(Interpreter.interprete(parse(tokenize("+ +1 3 4"))))
-    print(Interpreter.interprete(parse(tokenize("+ +1 3 +4 5"))))
+    print(interprete(parse(tokenize("+1 3"))))
+    print(interprete(parse(tokenize("+1+3 4"))))
+    print(interprete(parse(tokenize("++1+3 2 5"))))
