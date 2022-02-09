@@ -27,6 +27,6 @@ p7 = 1024
 p8 = 128
 
 
-def add(args):
+def add(a1, a2):
     """Add two numbers"""
-    return Token(TokenType.NUMBER, args[0].value + args[1].value)
+    return Token(TokenType.NUMBER, a1.value + a2.value)
