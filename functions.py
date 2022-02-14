@@ -30,3 +30,18 @@ p8 = 128
 def add(a1, a2):
     """Add two numbers"""
     return Token(TokenType.NUMBER, a1.value + a2.value)
+
+
+def sub(a1, a2):
+    """Subtract two numbers"""
+    return Token(TokenType.NUMBER, a1.value - a2.value)
+
+
+def mul(a1, a2):
+    """Multiplies too numbers"""
+    return Token(TokenType.NUMBER, a1.value * a2.value)
+
+
+def div(a1, a2):
+    """Divides two numbers"""
+    return Token(TokenType.NUMBER, a1.value / a2.value)
