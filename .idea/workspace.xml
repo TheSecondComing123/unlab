@@ -34,7 +34,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.functions">
+  <component name="RunManager" selected="Python.interpreter (1)">
     <configuration name="codepage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Noxan" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -205,8 +205,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.functions" />
         <item itemvalue="Python.interpreter (1)" />
+        <item itemvalue="Python.functions" />
         <item itemvalue="Python.codepage" />
         <item itemvalue="Python.tokenizer (1)" />
         <item itemvalue="Python.interpreter" />

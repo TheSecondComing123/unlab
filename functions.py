@@ -27,21 +27,26 @@ p7 = 1024
 p8 = 128
 
 
-def add(a1, a2):
+def Add(a1, a2):
     """Add two numbers"""
     return Token(TokenType.NUMBER, a1.value + a2.value)
 
 
-def sub(a1, a2):
+def Sub(a1, a2):
     """Subtract two numbers"""
     return Token(TokenType.NUMBER, a1.value - a2.value)
 
 
-def mul(a1, a2):
+def Mul(a1, a2):
     """Multiplies too numbers"""
     return Token(TokenType.NUMBER, a1.value * a2.value)
 
 
-def div(a1, a2):
+def TrueDiv(a1, a2):
     """Divides two numbers"""
     return Token(TokenType.NUMBER, a1.value / a2.value)
+
+
+def Print(a1):
+    """Prints something"""
+    print(a1)

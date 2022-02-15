@@ -32,3 +32,4 @@ if __name__ == "__main__":
     print(interprete(parse(tokenize("-2 1"))))
     print(interprete(parse(tokenize("×7 2"))))
     print(interprete(parse(tokenize("÷10 2"))))
+    interprete(parse(tokenize("¶+1 ×3 3")))

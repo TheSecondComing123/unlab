@@ -1,9 +1,10 @@
 from functions import *
 
 elements = {
-    "+": [2, add],
-    "-": [2, sub],
-    "×": [2, mul],
-    "÷": [2, div],
-    "g": [0, g]
+    "+": [2, Add],
+    "-": [2, Sub],
+    "×": [2, Mul],
+    "÷": [2, TrueDiv],
+    "g": [0, g],
+    "¶": [1, Print]
 }
