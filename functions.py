@@ -42,6 +42,9 @@ def Mul(a1, a2, ctx=None):
 
 def TrueDiv(a1, a2, ctx=None):
     """Divides two numbers"""
+    if a2 == 0:
+        return float(f"{'-' if a1 < 0 else ''}Infinity")
+
     return a1 / a2
 
 
@@ -51,3 +54,8 @@ def Print(a1, ctx=None):
     ctx.printed = True
 
     return a1
+
+
+def Power(a1, a2, ctx=None):
+    """Calculates a1 to the power of a2"""
+    return a1 ** a2
