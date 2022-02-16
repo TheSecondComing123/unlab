@@ -5,6 +5,6 @@ elements = {
     "-": [2, Sub],
     "×": [2, Mul],
     "÷": [2, TrueDiv],
-    "g": [0, g],
+    "g": [0, lambda *x: g],  # g (and other constants) must be a lambda because the interpreter tries to call it
     "¶": [1, Print]
 }
