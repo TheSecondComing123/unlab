@@ -19,7 +19,7 @@ def parse(token_list: list[Token]) -> list[Token]:
         if token.name == TokenType.FUNCTION:
             if not tokens:  # account for there not being anything
                 # after this token by just breaking the loop
-                parse_list.append(token)
+                parse_list.append(token.value)
                 break
             arity = elements[token.value][0]
             temp = parse(list(tokens))  # We call parse on the remaining token
@@ -28,7 +28,7 @@ def parse(token_list: list[Token]) -> list[Token]:
             # number of constants/nilads) form single units, and non-
             # complete functions (functions and a non-complete number
             # of constants/nilads) can use those single units.
-            parse_list.append([token] + temp[:arity])  # Add a list of
+            parse_list.append([token.value] + temp[:arity])  # Add a list of
             # this token plus however many grouped tokens the arity
             # requires
             parse_list += temp[arity:]  # add the rest of the parsed
@@ -36,7 +36,7 @@ def parse(token_list: list[Token]) -> list[Token]:
             break
             # exit the loop because everything is parsed.
         elif token.name == TokenType.NUMBER:
-            parse_list.append(token)  # Numbers don't need anything else
+            parse_list.append(token.value)  # Numbers don't need anything else
 
     return parse_list
 

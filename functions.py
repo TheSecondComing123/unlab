@@ -1,5 +1,3 @@
-from tokenizer import Token, TokenType
-
 g = "Hello, World!"
 w = "Hello World"
 b = "0123456789"
@@ -27,26 +25,29 @@ p7 = 1024
 p8 = 128
 
 
-def Add(a1, a2):
+def Add(a1, a2, ctx=None):
     """Add two numbers"""
-    return Token(TokenType.NUMBER, a1.value + a2.value)
+    return a1 + a2
 
 
-def Sub(a1, a2):
+def Sub(a1, a2, ctx=None):
     """Subtract two numbers"""
-    return Token(TokenType.NUMBER, a1.value - a2.value)
+    return a1 - a2
 
 
-def Mul(a1, a2):
+def Mul(a1, a2, ctx=None):
     """Multiplies too numbers"""
-    return Token(TokenType.NUMBER, a1.value * a2.value)
+    return a1 * a2
 
 
-def TrueDiv(a1, a2):
+def TrueDiv(a1, a2, ctx=None):
     """Divides two numbers"""
-    return Token(TokenType.NUMBER, a1.value / a2.value)
+    return a1 / a2
 
 
-def Print(a1):
+def Print(a1, ctx=None):
     """Prints something"""
-    print(a1)
+    ctx.print += str(a1) + "\n"
+    ctx.printed = True
+
+    return a1
