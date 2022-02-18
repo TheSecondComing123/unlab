@@ -15,7 +15,6 @@ class RegEx(enum.Enum):
     """Regex helping class for IsType"""
 
     NUMBER = r"\d"
-    STRING_START = r"\""
     IGNORE_TOKEN = r" "
 
 
