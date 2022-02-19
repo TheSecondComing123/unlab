@@ -7,6 +7,7 @@ class TokenType(enum.Enum):
     """Class for all Tokens"""
 
     NUMBER = "number"
+    STRING = "string"
     FUNCTION = "function"
 
 
@@ -31,6 +32,10 @@ class IsType:
     @staticmethod
     def ignore_token(char: str):
         return bool(re.match(RegEx.IGNORE_TOKEN.value, char))
+
+
+class Indicator:
+    STRING = ' " '
 
 
 class Token:
