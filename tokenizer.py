@@ -35,7 +35,7 @@ class IsType:
 
 
 class Indicator:
-    STRING = ' " '
+    STRING_CHAR = ' " '
 
 
 class Token:
@@ -53,6 +53,8 @@ def tokenize(text: str) -> list[Token]:
     tokens = []
     current_number = False
     number = ""
+    string_start = False
+    string = ""
 
     for char in text:
         if not IsType.number(char):
@@ -60,6 +62,8 @@ def tokenize(text: str) -> list[Token]:
                 tokens.append(Token(TokenType.NUMBER, int(number)))
                 current_number = False
                 number = ""
+            elif char == Indicator.STRING_CHAR and string_start:
+                string += char
 
         if IsType.ignore_token(char):
             continue
@@ -74,6 +78,12 @@ def tokenize(text: str) -> list[Token]:
             else:
                 number += char
 
+        elif char == Indicator.STRING_CHAR:
+            if not string_start:
+                string_start = True
+            else:
+                tokens.append(Token(TokenType.STRING, char))
+
     if current_number:
         tokens.append(Token(TokenType.NUMBER, int(number)))
 
@@ -83,3 +93,4 @@ def tokenize(text: str) -> list[Token]:
 if __name__ == "__main__":
     print(tokenize("+7 59*89 / 207"))
     print(tokenize("+1 +3 4"))
+    print(tokenize("2 \"test\""))
