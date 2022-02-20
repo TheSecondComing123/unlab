@@ -1,4 +1,4 @@
-from interpreter import interprete
+from interpreter import Interprete
 from tokenizer import tokenize
 from parse import parse
 from context import Context
@@ -15,15 +15,16 @@ parser.add_argument(
 def main(code):
     """Main function, which returns output of code"""
     ctx = Context()
-    output = interprete(parse(tokenize(code)), ctx)
+    interpreter = Interprete()
+    output = interpreter.main(parse(tokenize(code)), ctx=ctx)
     if ctx.printed:
         return ctx.print
     else:
-        return output
+        return output[-1]
 
 
 def cli():
-    """Fucntion for CLI support"""
+    """Function for CLI support"""
     args = parser.parse_args()
     if args.code:
         print(main(args.code))
