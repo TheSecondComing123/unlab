@@ -35,7 +35,7 @@ class IsType:
 
 
 class Indicator:
-    STRING_CHAR = ' " '
+    STRING_DELIMITER = ' " '
 
 
 class Token:
@@ -62,8 +62,8 @@ def tokenize(text: str) -> list[Token]:
                 tokens.append(Token(TokenType.NUMBER, int(number)))
                 current_number = False
                 number = ""
-            elif char == Indicator.STRING_CHAR and string_start:
-                string += char
+        if char != Indicator.STRING_DELIMITER and string_start:
+            string += char
 
         if IsType.ignore_token(char):
             continue
@@ -78,7 +78,7 @@ def tokenize(text: str) -> list[Token]:
             else:
                 number += char
 
-        elif char == Indicator.STRING_CHAR:
+        elif char == Indicator.STRING_DELIMITER:
             if not string_start:
                 string_start = True
             else:
