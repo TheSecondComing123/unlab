@@ -80,7 +80,6 @@ def tokenize(text: str) -> list[Token]:
 
         elif IsType.string_delimiter(char):
             if not current_string:
-                print("yes")
                 current_string = True
             else:
                 tokens.append(Token(TokenType.STRING, string))
