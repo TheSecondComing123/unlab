@@ -33,9 +33,9 @@ class IsType:
     def ignore_token(char: str):
         return bool(re.match(RegEx.IGNORE_TOKEN.value, char))
 
-
-class Indicator:
-    STRING_DELIMITER = ' " '
+    @staticmethod
+    def string_delimiter(char: str):
+        return char == '"'
 
 
 class Token:
@@ -53,7 +53,7 @@ def tokenize(text: str) -> list[Token]:
     tokens = []
     current_number = False
     number = ""
-    string_start = False
+    current_string = False
     string = ""
 
     for char in text:
@@ -62,7 +62,7 @@ def tokenize(text: str) -> list[Token]:
                 tokens.append(Token(TokenType.NUMBER, int(number)))
                 current_number = False
                 number = ""
-        if char != Indicator.STRING_DELIMITER and string_start:
+        if not IsType.string_delimiter(char) and current_string:
             string += char
 
         if IsType.ignore_token(char):
@@ -78,14 +78,18 @@ def tokenize(text: str) -> list[Token]:
             else:
                 number += char
 
-        elif char == Indicator.STRING_DELIMITER:
-            if not string_start:
-                string_start = True
+        elif IsType.string_delimiter(char):
+            if not current_string:
+                current_string = True
             else:
-                tokens.append(Token(TokenType.STRING, char))
+                tokens.append(Token(TokenType.STRING, string))
+                current_string = False
+                string = ""
 
     if current_number:
         tokens.append(Token(TokenType.NUMBER, int(number)))
+    if current_string:
+        tokens.append(Token(TokenType.STRING, string))
 
     return tokens
 
@@ -93,4 +97,4 @@ def tokenize(text: str) -> list[Token]:
 if __name__ == "__main__":
     print(tokenize("+7 59*89 / 207"))
     print(tokenize("+1 +3 4"))
-    print(tokenize("2 \"test\""))
+    print(tokenize('2 "s1" 3 "s2" "s3'))
