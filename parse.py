@@ -22,21 +22,16 @@ def parse(token_list: list[Token]) -> list[Token]:
                 parse_list.append(token.value)
                 break
             arity = elements[token.value][0]
-            temp = parse(list(tokens))  # We call parse on the remaining token
-            # list so that it groups whatever is left - this works
+            temp = parse(list(tokens))  # This works
             # because complete functions (functions and a complete
             # number of constants/nilads) form single units, and non-
             # complete functions (functions and a non-complete number
             # of constants/nilads) can use those single units.
-            parse_list.append([token.value] + temp[:arity])  # Add a list of
-            # this token plus however many grouped tokens the arity
-            # requires
-            parse_list += temp[arity:]  # add the rest of the parsed
-            # tokens
-            break
-            # exit the loop because everything is parsed.
-        elif token.name == TokenType.NUMBER:
-            parse_list.append(token.value)  # Numbers don't need anything else
+            parse_list.append([token.value] + temp[:arity])  # Arity appended to list because function might have args
+            parse_list += temp[arity:]
+            break  # break because everything is parsed (complete)
+        elif token.name in {TokenType.NUMBER, TokenType.STRING}:
+            parse_list.append(token.value)  # Literals don't need any special treatment
 
     return parse_list
 

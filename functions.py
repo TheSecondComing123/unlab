@@ -20,13 +20,17 @@ p2 = 256
 p3 = 32768
 p4 = 65536
 p5 = 2048
-p6 = 4906
+p6 = 4096
 p7 = 1024
 p8 = 128
 
 
 def Add(a1, a2, ctx=None):
     """Add two numbers"""
+
+    if isinstance(a1, str) and isinstance(a2, int):
+        return a1 + str(a2)
+
     return a1 + a2
 
 
@@ -43,7 +47,7 @@ def Mul(a1, a2, ctx=None):
 def TrueDiv(a1, a2, ctx=None):
     """Divides two numbers"""
     if a2 == 0:
-        return float(f"{'-' if a1 < 0 else ''}Infinity")
+        return float(f"{'-' if a1 < 0 else ''}Infinity")  # Although negative numbers are not supported (yet)
 
     return a1 / a2
 
