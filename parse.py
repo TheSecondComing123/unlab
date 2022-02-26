@@ -1,5 +1,6 @@
 from tokenizer import Token, TokenType, tokenize
 from collections import deque
+from helper import Literals
 from elements import elements
 
 
@@ -19,7 +20,7 @@ def parse(token_list: list[Token]) -> list[Token]:
         if token.name == TokenType.FUNCTION:
             if not tokens:  # account for there not being anything
                 # after this token by just breaking the loop
-                parse_list.append(token.value)
+                parse_list.append(elements[token.value][1])
                 break
             arity = elements[token.value][0]
             temp = parse(list(tokens))  # This works
@@ -27,10 +28,12 @@ def parse(token_list: list[Token]) -> list[Token]:
             # number of constants/nilads) form single units, and non-
             # complete functions (functions and a non-complete number
             # of constants/nilads) can use those single units.
-            parse_list.append([token.value] + temp[:arity])  # Arity appended to list because function might have args
+            parse_list.append(
+                [elements[token.value][1]] + temp[:arity]
+            )  # Arity appended to list because function might have args
             parse_list += temp[arity:]
             break  # break because everything is parsed (complete)
-        elif token.name in {TokenType.NUMBER, TokenType.STRING}:
+        elif token.name in Literals:
             parse_list.append(token.value)  # Literals don't need any special treatment
 
     return parse_list
@@ -38,4 +41,4 @@ def parse(token_list: list[Token]) -> list[Token]:
 
 if __name__ == "__main__":
     print(parse(tokenize("+1 +3 +4 5")))
-    print(parse(tokenize("+1 +3 4 +5 6")))
+    print(parse(tokenize("g")))

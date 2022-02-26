@@ -1,3 +1,5 @@
+from helper import IsType
+
 g = "Hello, World!"
 w = "Hello World"
 b = "0123456789"
@@ -27,11 +29,10 @@ p8 = 128
 
 def Add(a1, a2, ctx=None):
     """Add two numbers"""
-
-    if isinstance(a1, str) and isinstance(a2, int):
-        return a1 + str(a2)
-
-    return a1 + a2
+    if IsType(args=[a1, a2], types=[str, int]):
+        return str(a1) + str(a2)
+    else:
+        return a1 + a2
 
 
 def Sub(a1, a2, ctx=None):
@@ -47,7 +48,9 @@ def Mul(a1, a2, ctx=None):
 def TrueDiv(a1, a2, ctx=None):
     """Divides two numbers"""
     if a2 == 0:
-        return float(f"{'-' if a1 < 0 else ''}Infinity")  # Although negative numbers are not supported (yet)
+        return float(
+            f"{'-' if a1 < 0 else ''}Infinity"
+        )  # Although negative numbers are not supported (yet)
 
     return a1 / a2
 
@@ -62,4 +65,4 @@ def Print(a1, ctx=None):
 
 def Power(a1, a2, ctx=None):
     """Calculates a1 to the power of a2"""
-    return a1 ** a2
+    return a1**a2
