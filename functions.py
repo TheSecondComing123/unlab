@@ -65,4 +65,6 @@ def Print(a1, ctx=None):
 
 def Power(a1, a2, ctx=None):
     """Calculates a1 to the power of a2"""
-    return a1**a2
+    # fmt: off
+    return a1 ** a2
+    # fmt: on
