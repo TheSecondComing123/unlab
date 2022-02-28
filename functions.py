@@ -1,4 +1,5 @@
-from helper import IsType
+from helper import typecheck
+import itertools
 
 g = "Hello, World!"
 w = "Hello World"
@@ -29,7 +30,7 @@ p8 = 128
 
 def Add(a1, a2, ctx=None):
     """Add two numbers"""
-    if IsType(args=[a1, a2], types=[str, int]):
+    if typecheck(args=[a1, a2], types=[str, int]):
         return str(a1) + str(a2)
     else:
         return a1 + a2
@@ -68,3 +69,11 @@ def Power(a1, a2, ctx=None):
     # fmt: off
     return a1 ** a2
     # fmt: on
+
+
+def _interleave(a1, a2):
+    """Interleave a1 and a2 (two iterables)"""
+
+    a2 = itertools.cycle(a2)
+    convert_func = "".join if isinstance(a1, str) else type(a1)
+    return convert_func(itertools.chain.from_iterable(zip(a1, a2)))

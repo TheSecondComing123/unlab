@@ -7,9 +7,12 @@ TokenList = Union[Token, list[Token]]
 Literals = [TokenType.NUMBER, TokenType.STRING]
 
 
-def Types(*a):
+def gettypes(*a):
     return list(map(type, a))
 
 
-def IsType(args, types):
-    return Counter(Types(*args)) == Counter(types)
+def typecheck(args, types, *, ordered=False):
+    if not ordered:
+        return Counter(gettypes(*args)) == Counter(types)
+    else:
+        return gettypes(*args) == types
