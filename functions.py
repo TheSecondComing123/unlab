@@ -28,7 +28,8 @@ p6 = 4096
 p7 = 1024
 p8 = 128
 
-ctx = Context()  # Empty context
+# use ctx=ctx rather than ctx=None in elements as a default context when nothing is given
+ctx = Context()
 
 
 def Add(a, b, ctx=ctx):
