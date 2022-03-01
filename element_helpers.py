@@ -1,4 +1,5 @@
 import itertools
+from typing import Union, Callable, Iterable
 
 
 def add(a: int, b: int):
@@ -34,21 +35,20 @@ def interleave(a: list, b: list):
     return convert_func(itertools.chain.from_iterable(zip(a, b_cycle)))
 
 
-def interleaveStr(a: str, b: str):
-    """Interleave a and b (two strings)"""
-    a_list, b_list = list(a), list(b)
-    return "".join(interleave(a_list, b_list))
-
-
-def print_with_newline(a):
-    """Format a as a string with newline"""
+def print_with_newline(a: Union[str, Callable]):
+    """Format a as a string with newline, a:str"""
     if callable(a):
         return str(a())  # For constants (which are stored as lambdas)
     return str(a) + "\n"
 
 
-def power(a, b):
-    """Take the power of a and b"""
+def power(a: int, b: int):
+    """Take the power of a and b, a:int, b:int"""
     # fmt: off
     return a ** b
     # fmt: on
+
+
+def joinab(a: Iterable, b: str):
+    """b.join(a), a:Iterable[Any, Not[Int]], b:str"""
+    return b.join(a)
