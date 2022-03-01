@@ -50,6 +50,8 @@ def Mul(a, b, ctx=ctx):
     """Multiplication"""
     if typecheck(args=[a, b], types=[int, int]):
         return multiply(a, b)
+    elif typecheck(args=[a, b], types=[str, str]):
+        return joinab(a, b)
 
 
 def TrueDiv(a, b, ctx=ctx):
@@ -69,3 +71,5 @@ def Power(a, b, ctx=None):
     """Exponentiation"""
     if typecheck(args=[a, b], types=[int, int]):
         return power(a, b)
+    elif typecheck(args=[a, b], types=[str, str]):
+        return interleave(a, b)
