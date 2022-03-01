@@ -11,8 +11,13 @@ def gettypes(*a):
     return list(map(type, a))
 
 
-def typecheck(args, types, *, ordered=False):
+def typecheck(args: list, types: list, *, ordered=True):
     if not ordered:
         return Counter(gettypes(*args)) == Counter(types)
     else:
         return gettypes(*args) == types
+
+
+def typecheckAny(arg: Union[int, str], types: list):
+    types = [typecheck(args=[arg], types=[typ]) for typ in types]
+    return any(types)

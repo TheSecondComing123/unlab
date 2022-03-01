@@ -1,5 +1,6 @@
-from helper import typecheck
-import itertools
+from helper import *
+from context import Context
+from element_helpers import *
 
 g = "Hello, World!"
 w = "Hello World"
@@ -27,53 +28,43 @@ p6 = 4096
 p7 = 1024
 p8 = 128
 
-
-def Add(a1, a2, ctx=None):
-    """Add two numbers"""
-    if typecheck(args=[a1, a2], types=[str, int]):
-        return str(a1) + str(a2)
-    else:
-        return a1 + a2
+ctx = Context()  # Empty context
 
 
-def Sub(a1, a2, ctx=None):
-    """Subtract two numbers"""
-    return a1 - a2
+def Add(a, b, ctx=ctx):
+    """Addition/Concatanation"""
+    if typecheck(args=[a, b], types=[int, int]):
+        return add(a, b)
+    elif typecheck(args=[a, b], types=[str, str]):
+        return concat(a, b)
 
 
-def Mul(a1, a2, ctx=None):
-    """Multiplies too numbers"""
-    return a1 * a2
+def Sub(a, b, ctx=ctx):
+    """Subtract"""
+    if typecheck(args=[a, b], types=[int, int]):
+        return subtract(a, b)
 
 
-def TrueDiv(a1, a2, ctx=None):
-    """Divides two numbers"""
-    if a2 == 0:
-        return float(
-            f"{'-' if a1 < 0 else ''}Infinity"
-        )  # Although negative numbers are not supported (yet)
-
-    return a1 / a2
+def Mul(a, b, ctx=ctx):
+    """Multiplication"""
+    if typecheck(args=[a, b], types=[int, int]):
+        return multiply(a, b)
 
 
-def Print(a1, ctx=None):
-    """Prints something"""
-    ctx.print += str(a1) + "\n"
+def TrueDiv(a, b, ctx=ctx):
+    """Division"""
+    if typecheck(args=[a, b], types=[int, int]):
+        return divide(a, b)
+
+
+def Print(a, ctx=ctx):
+    """Print with newline"""
+    ctx.print = print_with_newline(a)
     ctx.printed = True
-
-    return a1
-
-
-def Power(a1, a2, ctx=None):
-    """Calculates a1 to the power of a2"""
-    # fmt: off
-    return a1 ** a2
-    # fmt: on
+    return a
 
 
-def _interleave(a1, a2):
-    """Interleave a1 and a2 (two iterables)"""
-
-    a2 = itertools.cycle(a2)
-    convert_func = "".join if isinstance(a1, str) else type(a1)
-    return convert_func(itertools.chain.from_iterable(zip(a1, a2)))
+def Power(a, b, ctx=None):
+    """Exponentiation"""
+    if typecheck(args=[a, b], types=[int, int]):
+        return power(a, b)
