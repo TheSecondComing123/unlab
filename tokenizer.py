@@ -51,17 +51,28 @@ class Token:
 
 def tokenize(text: str) -> list[Token]:
     tokens = []
+
     current_number = False
     number = ""
+
     current_string = False
     string = ""
 
+    current_float = False
+    float_contents = ""
+
     for char in text:
         if not IsType.number(char):
+            if char == ".":  # decimal point
+                float_contents += number + "."
+                current_float = True
             if current_number:
                 tokens.append(Token(TokenType.NUMBER, int(number)))
                 current_number = False
                 number = ""
+            if current_float:
+                float_contents += number
+                tokens.append(Token(TokenType.NUMBER, float(float_contents)))
         if not IsType.string_delimiter(char) and current_string:
             string += char
 
@@ -98,3 +109,4 @@ if __name__ == "__main__":
     print(tokenize("+7 59*89 / 207"))
     print(tokenize("+1 +3 4"))
     print(tokenize('2 "s1" 3 "s2" "s3'))
+    print(tokenize("12.34"))
