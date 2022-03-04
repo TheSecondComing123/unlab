@@ -65,19 +65,26 @@ def tokenize(text: str) -> list[Token]:
         if not IsType.number(char):
             if char == ".":  # decimal point
                 float_contents += number + "."
+
                 current_float = True
-            if current_number:
-                tokens.append(Token(TokenType.NUMBER, int(number)))
-                current_number = False
+                current_number = False  # so the next digits get added to number
                 number = ""
-            if current_float:
+
+            elif current_float:
                 float_contents += number
                 tokens.append(Token(TokenType.NUMBER, float(float_contents)))
+
+                current_float = current_number = False
+                number = float_contents = ""
+
+            elif current_number:
+                tokens.append(Token(TokenType.NUMBER, int(number)))
+
+                current_number = False
+                number = ""
+
         if not IsType.string_delimiter(char) and current_string:
             string += char
-
-        if IsType.ignore_token(char):
-            continue
 
         elif IsType.function(char):
             tokens.append(Token(TokenType.FUNCTION, char))
@@ -97,8 +104,12 @@ def tokenize(text: str) -> list[Token]:
                 current_string = False
                 string = ""
 
-    if current_number:
+    if current_float:
+        float_contents += number
+        tokens.append(Token(TokenType.NUMBER, float(float_contents)))
+    elif current_number:
         tokens.append(Token(TokenType.NUMBER, int(number)))
+
     if current_string:
         tokens.append(Token(TokenType.STRING, string))
 
@@ -109,4 +120,4 @@ if __name__ == "__main__":
     print(tokenize("+7 59*89 / 207"))
     print(tokenize("+1 +3 4"))
     print(tokenize('2 "s1" 3 "s2" "s3'))
-    print(tokenize("12.34"))
+    print(tokenize('12.34 2 "abc" 3.7'))
