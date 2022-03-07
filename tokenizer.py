@@ -72,6 +72,11 @@ def tokenize(text: str) -> list[Token]:
 
             elif current_float:
                 float_contents += number
+                if float_contents.startswith("."):
+                    float_contents = "0" + float_contents
+                if float_contents.endswith("."):
+                    float_contents += "5"
+
                 tokens.append(Token(TokenType.NUMBER, float(float_contents)))
 
                 current_float = current_number = False
@@ -106,6 +111,11 @@ def tokenize(text: str) -> list[Token]:
 
     if current_float:
         float_contents += number
+        if float_contents.startswith("."):
+            float_contents = "0" + float_contents
+        if float_contents.endswith("."):
+            float_contents += "5"
+
         tokens.append(Token(TokenType.NUMBER, float(float_contents)))
     elif current_number:
         tokens.append(Token(TokenType.NUMBER, int(number)))

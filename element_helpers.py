@@ -1,20 +1,21 @@
 import itertools
 from typing import Union, Callable, Iterable
+from numbers import Rational
 
 
-def add(a: int, b: int):
+def add(a: Rational, b: Rational):
     return a + b
 
 
-def subtract(a: int, b: int):
+def subtract(a: Rational, b: Rational):
     return a - b
 
 
-def multiply(a: int, b: int):
+def multiply(a: Rational, b: Rational):
     return a * b
 
 
-def divide(a: int, b: int):
+def divide(a: Rational, b: Rational):
     if b == 0:
         return float(
             f"{'-' if a < 0 else ''}Infinity"
@@ -42,7 +43,7 @@ def print_with_newline(a: Union[str, Callable]):
     return str(a) + "\n"
 
 
-def power(a: int, b: int):
+def power(a: Rational, b: Rational):
     """Take the power of a and b, a:int, b:int"""
     # fmt: off
     return a ** b
