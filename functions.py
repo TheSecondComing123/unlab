@@ -37,7 +37,6 @@ ctx = Context()  # Set ctx to Context() at first (and as a default)
 def Add(a, b, ctx=ctx):
     """Addition/Concatanation"""
     if typecheck(args=[a, b], types=[Rational, Rational]):
-        print("yes")
         return add(a, b)
     elif typecheck(args=[a, b], types=[str, str]):
         return concat(a, b)
