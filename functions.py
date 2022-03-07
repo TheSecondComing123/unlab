@@ -1,6 +1,7 @@
 from helper import *
 from context import Context
 from element_helpers import *
+from helper import Rational
 
 g = "Hello, World!"
 w = "Hello World"
@@ -35,7 +36,8 @@ ctx = Context()  # Set ctx to Context() at first (and as a default)
 
 def Add(a, b, ctx=ctx):
     """Addition/Concatanation"""
-    if typecheck(args=[a, b], types=[int, int]):
+    if typecheck(args=[a, b], types=[Rational, Rational]):
+        print("yes")
         return add(a, b)
     elif typecheck(args=[a, b], types=[str, str]):
         return concat(a, b)
@@ -43,13 +45,13 @@ def Add(a, b, ctx=ctx):
 
 def Sub(a, b, ctx=ctx):
     """Subtract"""
-    if typecheck(args=[a, b], types=[int, int]):
+    if typecheck(args=[a, b], types=[Rational, Rational]):
         return subtract(a, b)
 
 
 def Mul(a, b, ctx=ctx):
     """Multiplication"""
-    if typecheck(args=[a, b], types=[int, int]):
+    if typecheck(args=[a, b], types=[Rational, Rational]):
         return multiply(a, b)
     elif typecheck(args=[a, b], types=[str, str]):
         return joinab(a, b)
@@ -57,7 +59,7 @@ def Mul(a, b, ctx=ctx):
 
 def TrueDiv(a, b, ctx=ctx):
     """Division"""
-    if typecheck(args=[a, b], types=[int, int]):
+    if typecheck(args=[a, b], types=[Rational, Rational]):
         return divide(a, b)
 
 
@@ -70,7 +72,7 @@ def Print(a, ctx=ctx):
 
 def Power(a, b, ctx=None):
     """Exponentiation"""
-    if typecheck(args=[a, b], types=[int, int]):
+    if typecheck(args=[a, b], types=[Rational, Rational]):
         return power(a, b)
     elif typecheck(args=[a, b], types=[str, str]):
         return interleave(a, b)

@@ -5,6 +5,7 @@ from collections import Counter
 
 TokenList = Union[Token, list[Token]]
 Literals = [TokenType.NUMBER, TokenType.STRING]
+Rational = (int, float)
 
 
 def gettypes(*a):
@@ -15,7 +16,10 @@ def typecheck(args: list, types: list, *, ordered=True):
     if not ordered:
         return Counter(gettypes(*args)) == Counter(types)
     else:
-        return gettypes(*args) == types
+        instance = []
+        for ind in range(len(args)):
+            instance.append(isinstance(args[ind], types[ind]))
+        return instance
 
 
 def typecheckAny(arg: Union[int, str], types: list):
