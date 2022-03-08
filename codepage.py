@@ -1,3 +1,5 @@
-codepage = ["+", "-", "×", "÷", "ⁱ", "g", "¶", "↹", "{", "}"]
+FUNCTIONS = ["+", "-", "×", "÷", "ⁱ", "g", "¶"]
 
-INDICATORS = "↹{}"
+INDICATORS = ["↹", "{", "}"]
+
+codepage = FUNCTIONS + INDICATORS
