@@ -17,3 +17,16 @@ class ForLoop:
 
     def __repr__(self):
         return f"ForLoop(number={self.number}, body={self.body})"
+
+
+def structure(tokens):
+    """
+    Groups tokens together to structures
+    """
+
+    loop_started = 0
+    loop_content = []
+    loop_number = None
+
+    for t in tokens:
+

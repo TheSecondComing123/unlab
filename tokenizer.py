@@ -1,6 +1,6 @@
 import enum
 import re
-from codepage import codepage
+from codepage import codepage, INDICATORS
 
 
 class TokenType(enum.Enum):
@@ -9,6 +9,7 @@ class TokenType(enum.Enum):
     NUMBER = "number"
     STRING = "string"
     FUNCTION = "function"
+    INDICATOR = "indicator"
 
 
 class RegEx(enum.Enum):
@@ -65,10 +66,6 @@ def tokenize(text: str) -> list[Token]:
     current_float = False
     float_contents = ""
 
-    loop_started = False
-    loop_number = None
-    loop_contents = ""
-
     for char in text:
         if not IsType.number(char):
             if char == ".":  # decimal point
@@ -77,8 +74,6 @@ def tokenize(text: str) -> list[Token]:
                 current_float = True
                 current_number = False  # so the next digits get added to number
                 number = ""
-            elif char == "↹":  # for loop
-                loop_started = True
 
             elif current_float:
                 float_contents += number
@@ -98,10 +93,13 @@ def tokenize(text: str) -> list[Token]:
                 current_number = False
                 number = ""
 
+            elif char in INDICATORS:  # special processing needed
+                tokens.append(Token(TokenType.INDICATOR, char))
+
         if not IsType.string_delimiter(char) and current_string:
             string += char
 
-        elif IsType.function(char):
+        elif IsType.function(char) and char not in INDICATORS:  # make sure it's a function and not a indicator
             tokens.append(Token(TokenType.FUNCTION, char))
 
         elif IsType.number(char):
@@ -141,3 +139,4 @@ if __name__ == "__main__":
     print(tokenize("+1 +3 4"))
     print(tokenize('2 "s1" 3 "s2" "s3'))
     print(tokenize('12.34 2 "abc" 3.7'))
+    print(tokenize("↹2{¶1}"))
