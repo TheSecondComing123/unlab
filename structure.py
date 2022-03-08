@@ -11,7 +11,7 @@ class ForLoop:
     (Borrowed from SYNTAX.md)
     """
 
-    def __init__(self, number: Token, body: Token):
+    def __init__(self, number: Token, body: list):
         self.number = number
         self.body = body
 
@@ -29,4 +29,15 @@ def structure(tokens):
     loop_number = None
 
     for t in tokens:
+        if t.value == "↹":
+            loop_started = 1  # stage 1, outside {}
+        elif t.value == "{":
+            loop_started = 2  # stage 2, inside {}
+        else:
+            if loop_started == 1:
+                loop_number = t  # loop number
+            elif loop_started == 2:
+                loop_content.append(t)  # loop body
 
+        if t.value == "}":  # end of loop
+            tokens.append(ForLoop(loop_number, loop_content))
