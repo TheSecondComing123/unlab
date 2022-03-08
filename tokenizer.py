@@ -1,6 +1,6 @@
 import enum
 import re
-from codepage import codepage, INDICATORS
+from codepage import FUNCTIONS, INDICATORS
 
 
 class TokenType(enum.Enum):
@@ -28,7 +28,7 @@ class IsType:
 
     @staticmethod
     def function(char: str):
-        return char in codepage
+        return char in FUNCTIONS
 
     @staticmethod
     def ignore_token(char: str):
@@ -37,6 +37,10 @@ class IsType:
     @staticmethod
     def string_delimiter(char: str):
         return char == '"'
+
+    @staticmethod
+    def indicator(char: str):
+        return char in INDICATORS
 
 
 class Token:
@@ -93,14 +97,14 @@ def tokenize(text: str) -> list[Token]:
                 current_number = False
                 number = ""
 
-            elif char in INDICATORS:  # special processing needed
-                tokens.append(Token(TokenType.INDICATOR, char))
-
         if not IsType.string_delimiter(char) and current_string:
             string += char
 
-        elif IsType.function(char) and char not in INDICATORS:  # make sure it's a function and not a indicator
+        elif IsType.function(char):  # make sure it's a function and not a indicator
             tokens.append(Token(TokenType.FUNCTION, char))
+
+        elif IsType.indicator(char):  # special processing needed
+            tokens.append(Token(TokenType.INDICATOR, char))
 
         elif IsType.number(char):
             if not current_number:
