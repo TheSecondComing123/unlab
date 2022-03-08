@@ -33,6 +33,10 @@ def cli():
 
 
 def shell():
+    """
+    Interactive shell
+    """
+
     while True:
         code = input(">>> ")
         if code == ":quit:" or code == ":exit:":

@@ -50,6 +50,10 @@ class Token:
 
 
 def tokenize(text: str) -> list[Token]:
+    """
+    Tokenize text
+    """
+
     tokens = []
 
     current_number = False
@@ -61,6 +65,10 @@ def tokenize(text: str) -> list[Token]:
     current_float = False
     float_contents = ""
 
+    loop_started = False
+    loop_number = None
+    loop_contents = ""
+
     for char in text:
         if not IsType.number(char):
             if char == ".":  # decimal point
@@ -69,6 +77,8 @@ def tokenize(text: str) -> list[Token]:
                 current_float = True
                 current_number = False  # so the next digits get added to number
                 number = ""
+            elif char == "↹":  # for loop
+                loop_started = True
 
             elif current_float:
                 float_contents += number

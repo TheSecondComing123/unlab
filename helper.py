@@ -9,10 +9,18 @@ Rational = (int, float)
 
 
 def gettypes(*a):
+    """
+    Convert a list of objects to their types
+    """
     return list(map(type, a))
 
 
 def typecheck(args: list, types: list, *, ordered=True):
+    """
+    Check if the types of args match types. If ordered is true,
+    the check order is strict.
+    """
+
     if not ordered:
         return Counter(gettypes(*args)) == Counter(types)
     else:

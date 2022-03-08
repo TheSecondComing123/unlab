@@ -20,16 +20,16 @@ def parse(token_list: list[Token]) -> list[Token]:
         if token.name == TokenType.FUNCTION:
             if not tokens:  # account for there not being anything
                 # after this token by just breaking the loop
-                parse_list.append(elements[token.value][1])
+                parse_list.append(elements[token.value].func)
                 break
-            arity = elements[token.value][0]
+            arity = elements[token.value].arity
             temp = parse(list(tokens))  # This works
             # because complete functions (functions and a complete
             # number of constants/nilads) form single units, and non-
             # complete functions (functions and a non-complete number
             # of constants/nilads) can use those single units.
             parse_list.append(
-                [elements[token.value][1]] + temp[:arity]
+                [elements[token.value].func] + temp[:arity]
             )  # Arity appended to list because function might have args
             parse_list += temp[arity:]
             break  # break because everything is parsed (complete)

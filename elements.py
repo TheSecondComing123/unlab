@@ -1,11 +1,23 @@
 from functions import *
+from typing import Callable
+
+
+class Element:
+    def __init__(self, *, arity: int, func: Callable):
+        self.arity = arity
+        self.func = func
+
+    def __call__(self, *args, **kwargs):
+        return self.func(*args, **kwargs)
+
 
 elements = {
-    "+": [2, Add],
-    "-": [2, Sub],
-    "×": [2, Mul],
-    "÷": [2, TrueDiv],
-    "ⁱ": [2, Power],
-    "g": [0, lambda *x: g],  # g (and other constants) must be a lambda because the interpreter tries to call it
-    "¶": [1, Print]
+    "+": Element(arity=2, func=Add),
+    "-": Element(arity=2, func=Sub),
+    "×": Element(arity=2, func=Mul),
+    "÷": Element(arity=2, func=TrueDiv),
+    "ⁱ": Element(arity=2, func=Power),
+    "g": Element(arity=0, func=lambda *x: g),
+    # g (and other constants) must be a lambda because the interpreter tries to call it
+    "¶": Element(arity=1, func=Print)
 }
