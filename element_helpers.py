@@ -53,3 +53,7 @@ def power(a: Rational, b: Rational):
 def joinab(a: Iterable, b: str):
     """b.join(a), a:Iterable[Any, Not[Int]], b:str"""
     return b.join(a)
+
+
+def sumdigits(a: int):
+    return sum(map(int, str(a)))

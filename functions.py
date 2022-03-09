@@ -75,3 +75,8 @@ def Power(a, b, ctx=None):
         return power(a, b)
     elif typecheck(args=[a, b], types=[str, str]):
         return interleave(a, b)
+
+
+def SumDigits(a, ctx=None):
+    if typecheck(args=[a], types=[int]) or typecheck(args=[a], types=[str]):
+        return sumdigits(a)
