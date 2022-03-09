@@ -28,6 +28,8 @@ def structure(tokens):
     loop_content = []
     loop_number = None
 
+    structured_tokens = []
+
     for t in tokens:
         if t.value == "↹":
             loop_started = 1  # stage 1, outside {}
@@ -40,4 +42,11 @@ def structure(tokens):
                 loop_content.append(t)  # loop body
 
         if t.value == "}":  # end of loop
-            tokens.append(ForLoop(loop_number, loop_content))
+            structured_tokens.append(ForLoop(loop_number, loop_content))
+
+            loop_started = 0
+            loop_content = []
+            loop_number = None
+
+        if loop_started == 0:
+            structured_tokens.append(t)
