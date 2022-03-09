@@ -62,5 +62,4 @@ def sumdigits(a: int):
 
 def sumascii(a: str):
     """Convert a to code points, then sum"""
-    return sum(bytes(a))
-
+    return sum(bytes(a, encoding="utf-8"))
