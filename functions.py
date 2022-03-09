@@ -78,5 +78,7 @@ def Power(a, b, ctx=None):
 
 
 def SumDigits(a, ctx=None):
-    if typecheck(args=[a], types=[int]) or typecheck(args=[a], types=[str]):
+    if typecheck(args=[a], types=[int]):
         return sumdigits(a)
+    elif typecheck(args=[a], types=[str]):
+        return sumascii(a)

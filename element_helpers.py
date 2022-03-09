@@ -56,4 +56,11 @@ def joinab(a: Iterable, b: str):
 
 
 def sumdigits(a: int):
+    """Sum of the digits of an integer"""
     return sum(map(int, str(a)))
+
+
+def sumascii(a: str):
+    """Convert a to code points, then sum"""
+    return sum(bytes(a))
+
