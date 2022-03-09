@@ -12,7 +12,7 @@ u = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 c = 10
 d = 16
 e = 256
-f = 32768
+f = -1
 h = 65536
 i = 2048
 j = 4906
@@ -88,3 +88,7 @@ def SumDigits(a, ctx=None):
 
 def IntInput(ctx=None):
     return intinput()
+
+
+def Mod(a, b, ctx=None):
+    return mod(a, b)

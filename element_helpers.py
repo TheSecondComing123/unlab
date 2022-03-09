@@ -82,3 +82,7 @@ def intinput():
 
 def repeat(a: str, b: int):
     return a * b
+
+
+def mod(a: int, b: int):
+    return a % b

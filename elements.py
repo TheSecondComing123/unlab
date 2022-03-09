@@ -21,5 +21,6 @@ elements = {
     # g (and other constants) must be a lambda because the interpreter tries to call it
     "¶": Element(arity=1, func=Print),
     "Đ": Element(arity=1, func=SumDigits),
-    "Ŋ": Element(arity=0, func=IntInput)
+    "Ŋ": Element(arity=0, func=IntInput),
+    "Ƣ": Element(arity=2, func=Mod)
 }
