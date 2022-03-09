@@ -82,3 +82,7 @@ def SumDigits(a, ctx=None):
         return sumdigits(a)
     elif typecheck(args=[a], types=[str]):
         return sumascii(a)
+
+
+def IntInput(ctx=None):
+    return intinput()

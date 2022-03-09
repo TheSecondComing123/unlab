@@ -2,6 +2,8 @@ import itertools
 from typing import Union, Callable, Iterable
 from numbers import Rational
 
+from sys import stdin
+
 
 def add(a: Rational, b: Rational):
     return a + b
@@ -63,3 +65,16 @@ def sumdigits(a: int):
 def sumascii(a: str):
     """Convert a to code points, then sum"""
     return sum(bytes(a, encoding="utf-8"))
+
+
+def intinput():
+    start = 0
+    s = ""
+
+    for char in stdin.read():
+        if char in "0123456789":
+            s += char
+        else:
+            break
+
+    return int(s)
