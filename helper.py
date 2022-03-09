@@ -27,7 +27,7 @@ def typecheck(args: list, types: list, *, ordered=True):
         instance = []
         for ind in range(len(args)):
             instance.append(isinstance(args[ind], types[ind]))
-        return instance
+        return all(instance)
 
 
 def typecheckAny(arg: Union[int, str], types: list):
