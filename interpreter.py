@@ -1,5 +1,9 @@
 from typing import Any
 
+from tokenizer import tokenize
+from parse import parse
+from context import Context
+
 
 class Interprete:
     def main(self, tokens: list[Any], ctx):
@@ -42,3 +46,7 @@ class Interprete:
 
         else:
             return tokens
+
+
+def run(text):
+    return Interprete().main(parse(tokenize(text)), Context())

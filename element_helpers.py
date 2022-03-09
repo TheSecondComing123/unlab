@@ -78,3 +78,7 @@ def intinput():
             break
 
     return int(s)
+
+
+def repeat(a: str, b: int):
+    return a * b

@@ -54,6 +54,8 @@ def Mul(a, b, ctx=ctx):
         return multiply(a, b)
     elif typecheck(args=[a, b], types=[str, str]):
         return joinab(a, b)
+    elif typecheck(args=[a, b], types=[str, int]):
+        return repeat(a, b)
 
 
 def TrueDiv(a, b, ctx=ctx):
