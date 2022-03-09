@@ -35,7 +35,7 @@ ctx = Context()  # Set ctx to Context() at first (and as a default)
 
 
 def Add(a, b, ctx=ctx):
-    """Addition/Concatanation"""
+    """Addition/Concatenation"""
     if typecheck(args=[a, b], types=[Rational, Rational]):
         return add(a, b)
     elif typecheck(args=[a, b], types=[str, str]):
@@ -43,7 +43,7 @@ def Add(a, b, ctx=ctx):
 
 
 def Sub(a, b, ctx=ctx):
-    """Subtract"""
+    """Subtraction"""
     if typecheck(args=[a, b], types=[Rational, Rational]):
         return subtract(a, b)
 
