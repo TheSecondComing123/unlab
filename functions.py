@@ -40,12 +40,18 @@ def Add(a, b, ctx=ctx):
         return add(a, b)
     elif typecheck(args=[a, b], types=[str, str]):
         return concat(a, b)
+    elif typecheck(args=[a, b], types=[str, Rational]):
+        return concat(a, str(b))
+    elif typecheck(args=[a, b], types=[Rational, str]):
+        return addascii(a, b)
 
 
 def Sub(a, b, ctx=ctx):
     """Subtraction"""
     if typecheck(args=[a, b], types=[Rational, Rational]):
         return subtract(a, b)
+    elif typecheck(args=[a, b], types=[str, str]):
+        return removechars(a, b)
 
 
 def Mul(a, b, ctx=ctx):

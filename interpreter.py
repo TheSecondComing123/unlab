@@ -48,5 +48,5 @@ class Interprete:
             return tokens
 
 
-def run(text):
-    return Interprete().main(parse(tokenize(text)), Context())
+def run(text, ctx=Context()):
+    return Interprete().main(parse(tokenize(text)), ctx)

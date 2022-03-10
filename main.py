@@ -1,6 +1,4 @@
-from interpreter import Interprete
-from tokenizer import tokenize
-from parse import parse
+from interpreter import run
 from context import Context
 import argparse
 
@@ -15,8 +13,7 @@ parser.add_argument(
 def main(code):
     """Main function, which returns output of code"""
     ctx = Context()
-    interpreter = Interprete()
-    output = interpreter.main(parse(tokenize(code)), ctx=ctx)
+    output = run(code, ctx=ctx)
     if ctx.printed:
         return ctx.print
     else:
