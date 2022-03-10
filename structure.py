@@ -1,4 +1,4 @@
-from tokenizer import Token, tokenize  # Token() is used as a annotation
+from tokenizer import Token, TokenType, tokenize
 
 
 class ForLoop:
@@ -26,31 +26,32 @@ def structure(tokens):
 
     loop_started = 0
     loop_content = []
-    loop_number = None
+    loop_number = Token(TokenType.NUMBER, 10)
 
     structured_tokens = []
 
-    for t in tokens:
-        if t.value == "↹":
+    for token in tokens:
+        if token.value == "↹":
             loop_started = 1  # stage 1, outside {}
-        elif t.value == "{":
+        elif token.value == "{":
             loop_started = 2  # stage 2, inside {}
-        elif t.value == "}":  # end of loop
+        elif token.value == "}":  # end of loop
             structured_tokens.append(ForLoop(loop_number, loop_content))
 
             loop_started = 0
             loop_content = []
-            loop_number = None
+            loop_number = Token(TokenType.NUMBER, 10)
         else:
             if loop_started == 1:
-                loop_number = t  # loop number
+                loop_number = token  # loop number
             elif loop_started == 2:
-                loop_content.append(t)  # loop body
+                loop_content.append(token)  # loop body
             elif loop_started == 0:  # outside loop
-                structured_tokens.append(t)
+                structured_tokens.append(token)
 
     return structured_tokens
 
 
 if __name__ == "__main__":
     print(structure(tokenize("+2 3↹4{¶1} 5")))
+    print(structure(tokenize("+2 3↹{¶1} 5")))

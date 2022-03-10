@@ -32,9 +32,9 @@ def typecheck(args: list, types: list, *, ordered=True):
             if len(args) == len(types):
                 return all(isinstance(a, b) for a, b in zip(args, types))
             elif len(args) == 1 and len(types) > 1:
-                for t in types:
-                    if isinstance(args[0], t):
-                        return t
+                for typ in types:
+                    if isinstance(args[0], typ):
+                        return typ
                 return False
     except (TypeError, IndexError):
         raise TypeError(f"Did you mean: [{args}]?") from None
