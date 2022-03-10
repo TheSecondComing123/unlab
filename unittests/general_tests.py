@@ -1,4 +1,5 @@
-import unittest
+import unittest, init
+
 from interpreter import run
 
 
@@ -8,5 +9,5 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(run("-2 1"), [1])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

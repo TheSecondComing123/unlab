@@ -16,7 +16,8 @@ class Interprete:
         self.output = []
         main_output = self.interprete(tokens, ctx)
 
-        self.output.insert(0, main_output) if main_output else None
+        self.output.insert(0, main_output) if main_output != None else None
+
         return self.output
 
     def interprete(self, tokens: list[Any], ctx) -> Any:

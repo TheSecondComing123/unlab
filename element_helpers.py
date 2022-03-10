@@ -68,17 +68,14 @@ def sumascii(a: str):
     return sum(bytes(a, encoding="utf-8"))
 
 
-def intinput():
-    start = 0
-    s = ""
+def general_input():
+    inp = input("> ")
+    if inp.isdigit():
+        return int(inp)
+    elif inp.replace('.','',1).isdigit():
+        return float(inp)
 
-    for char in stdin.read():
-        if char in "0123456789":
-            s += char
-        else:
-            break
-
-    return int(s)
+    return inp
 
 
 def repeat(a: str, b: int):

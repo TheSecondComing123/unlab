@@ -92,8 +92,8 @@ def SumDigits(a, ctx=None):
         return sumascii(a)
 
 
-def IntInput(ctx=None):
-    return intinput()
+def GeneralInput(ctx=None):
+    return general_input()
 
 
 def Mod(a, b, ctx=None):

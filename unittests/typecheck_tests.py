@@ -1,4 +1,5 @@
-import unittest
+import unittest, init
+
 from helper import typecheck
 
 
@@ -8,6 +9,5 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(typecheck(["abc", [1, 2], 9.0], [str, list, float]), True)
         self.assertEqual(typecheck([[]], [str, int, float, tuple, list]), list)
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
