@@ -1,8 +1,10 @@
 from typing import Any
+from structure import structure
 
 from tokenizer import tokenize
 from parse import parse
 from context import Context
+from unpack import unpack
 
 
 class Interprete:
@@ -50,4 +52,4 @@ class Interprete:
 
 
 def run(text, ctx=Context()):
-    return Interprete().main(parse(tokenize(text)), ctx)
+    return Interprete().main(parse(unpack(structure(tokenize(text)))), ctx)
