@@ -19,7 +19,7 @@ class ForLoop:
         return f"ForLoop(number={self.number}, body={self.body})"
 
 
-def structure(tokens):
+def structure_forLoop(tokens):
     """
     Groups tokens together to structures
     """
@@ -50,6 +50,9 @@ def structure(tokens):
                 structured_tokens.append(token)
 
     return structured_tokens
+
+def structure(tokens):
+    return structure_forLoop(tokens)
 
 
 if __name__ == "__main__":

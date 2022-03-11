@@ -72,7 +72,7 @@ def TrueDiv(a, b, ctx=ctx):
 
 def Print(a, ctx=ctx):
     """Print with newline"""
-    ctx.print = print_with_newline(a)
+    ctx.print += print_with_newline(a)
     ctx.printed = True
     return a
 

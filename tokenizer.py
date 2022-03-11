@@ -139,8 +139,4 @@ def tokenize(text: str) -> list[Token]:
 
 
 if __name__ == "__main__":
-    print(tokenize("+7 59*89 / 207"))
-    print(tokenize("+1 +3 4"))
-    print(tokenize('2 "s1" 3 "s2" "s3'))
-    print(tokenize('12.34 2 "abc" 3.7'))
-    print(tokenize("↹2{¶1}"))
+    print(tokenize("+1 2"))
