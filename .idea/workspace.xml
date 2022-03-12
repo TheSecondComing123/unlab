@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="17980729-bdbd-4872-98bf-34cb4fc38d57" name="Default Changelist" comment="" />
+    <list default="true" id="17980729-bdbd-4872-98bf-34cb4fc38d57" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/codepage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/element_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/element_helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/elements.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/general_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/general_tests.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -122,7 +129,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for general_tests.MyTestCase.test_basicops" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for general_tests.MyTestCase.test_basic_ops" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Noxan" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -132,11 +139,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;general_tests.MyTestCase.test_basicops&quot;" />
+      <option name="_new_target" value="&quot;general_tests.MyTestCase.test_basic_ops&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for general_tests.MyTestCase.test_something" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for general_tests.MyTestCase.test_constants" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Noxan" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -146,11 +153,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;general_tests.MyTestCase.test_something&quot;" />
+      <option name="_new_target" value="&quot;general_tests.MyTestCase.test_constants&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for typecheck_tests.MyTestCase.test_typecheck" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for general_tests.MyTestCase.test_numops" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Noxan" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -160,7 +167,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;typecheck_tests.MyTestCase.test_typecheck&quot;" />
+      <option name="_new_target" value="&quot;general_tests.MyTestCase.test_numops&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -181,10 +188,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python tests.Unittests for general_tests.MyTestCase.test_numops" />
+        <item itemvalue="Python tests.Unittests for general_tests.MyTestCase.test_constants" />
+        <item itemvalue="Python tests.Unittests for general_tests.MyTestCase.test_basic_ops" />
         <item itemvalue="Python tests.Unittests in general_tests.py" />
-        <item itemvalue="Python tests.Unittests for general_tests.MyTestCase.test_basicops" />
-        <item itemvalue="Python tests.Unittests for general_tests.MyTestCase.test_something" />
-        <item itemvalue="Python tests.Unittests for typecheck_tests.MyTestCase.test_typecheck" />
       </list>
     </recent_temporary>
   </component>

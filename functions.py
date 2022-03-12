@@ -97,4 +97,12 @@ def GeneralInput(ctx=None):
 
 
 def Mod(a, b, ctx=None):
-    return mod(a, b)
+    if typecheck(args=[a, b], types=[int, int]):
+        return mod(a, b)
+
+
+def ExclamationMark(a, ctx=None):
+    if typecheck(args=[a], types=[str]):
+        return uppercase(a)
+    elif typecheck(args=[a], types=[Rational]):
+        return add(a, 1)
