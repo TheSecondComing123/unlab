@@ -1,13 +1,4 @@
-# Elements:  
-## `ǃ` Uppercase/Increment  
-Either uppercases a string or adds one to a number.  
-- Arity: 1
-
-```
-Overloads:
-    int a: a+1
-    str a: a.upper()
-```
+# Elements:
 
 ## `¡` Lowercase/Decrement
 Either lowercases a string or subtracts one from a number.

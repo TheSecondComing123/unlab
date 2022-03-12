@@ -1,3 +1,6 @@
+Update 3/12/2022:
+- Added the uppercase/increment element. (!)
+
 Update 3/9/2022:  
 - Added the int input element (Ŋ) and the sum digits/sum code points element. (Đ)
 
