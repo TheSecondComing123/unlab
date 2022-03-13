@@ -24,5 +24,6 @@ elements = {
     "Ŋ": Element(arity=0, func=GeneralInput),
     "Ƣ": Element(arity=2, func=Mod),
     "!": Element(arity=1, func=ExclamationMark),
-    "¡": Element(arity=1, func=InversExclamation)
+    "¡": Element(arity=1, func=InversExclamation),
+    "□": Element(arity=1, func=HollowSquare)
 }

@@ -113,3 +113,10 @@ def InversExclamation(a, ctx=None):
         return lowercase(a)
     elif typecheck(args=[a], types=[Rational]):
         return subtract(a, 1)
+
+
+def HollowSquare(a, ctx=None):
+    if typecheck(args=[a], types=[str]):
+        return swapcase(a)
+    elif typecheck(args=[a], types=[Rational]):
+        return negate(a)

@@ -106,3 +106,11 @@ def uppercase(a: str):
 
 def lowercase(a: str):
     return a.lower()
+
+
+def swapcase(a: str):
+    return a.swapcase()
+
+
+def negate(a: int):
+    return -a
