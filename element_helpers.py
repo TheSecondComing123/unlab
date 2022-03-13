@@ -102,3 +102,7 @@ def removechars(a: str, b: str):
 
 def uppercase(a: str):
     return a.upper()
+
+
+def lowercase(a: str):
+    return a.lower()

@@ -106,3 +106,10 @@ def ExclamationMark(a, ctx=None):
         return uppercase(a)
     elif typecheck(args=[a], types=[Rational]):
         return add(a, 1)
+
+
+def InversExclamation(a, ctx=None):
+    if typecheck(args=[a], types=[str]):
+        return lowercase(a)
+    elif typecheck(args=[a], types=[Rational]):
+        return subtract(a, 1)
