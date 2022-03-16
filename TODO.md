@@ -1,11 +1,13 @@
 # Elements:
 
-## `□` Swap case/Negate
-Either swaps the case of a string or negates a number.  
-- Arity: 1
+## `i` Index
+Get element at index
+- Arity: 2
 
 ```
 Overloads:
-    int a: -a
-    str a: a.swapcase()
+    str a, int b: a[b]
+    int a, str b: b[a]
+    int a, int b: str(a)[b]
+    str a, str b: a[int(b)]
 ```
