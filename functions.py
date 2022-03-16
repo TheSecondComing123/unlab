@@ -120,3 +120,8 @@ def HollowSquare(a, ctx=None):
         return swapcase(a)
     elif typecheck(args=[a], types=[Rational]):
         return negate(a)
+
+
+def Index(a, b, ctx=None):
+    if typecheck(args=[a, b], types=[str, Rational]):
+        return index(a, b)

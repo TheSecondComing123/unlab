@@ -114,3 +114,7 @@ def swapcase(a: str):
 
 def negate(a: int):
     return -a
+
+
+def index(a: str, b: int):
+    return a[b]
