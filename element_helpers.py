@@ -72,7 +72,7 @@ def general_input():
     inp = input("> ")
     if inp.isdigit():
         return int(inp)
-    elif inp.replace('.','',1).isdigit():
+    elif inp.replace(".", "", 1).isdigit():
         return float(inp)
 
     return inp
