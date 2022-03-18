@@ -125,3 +125,18 @@ def HollowSquare(a, ctx=None):
 def Index(a, b, ctx=None):
     if typecheck(args=[a, b], types=[str, Rational]):
         return index(a, b)
+
+
+def Slice(a, b, c, ctx=None):
+    if typecheck(args=[a, b, c], types=[str, Rational, Rational]):
+        return slice(a, b, c)
+
+
+def Head(a, b, ctx=None):
+    if typecheck(args=[a, b], types=[str, Rational]):
+        return head(a, b)
+
+
+def Tail(a, b, ctx=None):
+    if typecheck(args=[a, b], types=[str, Rational]):
+        return tail(a, b)

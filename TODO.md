@@ -1,15 +1,5 @@
 # Elements:
 
-## `i` Index
-Get element at index
-- Arity: 2
-
-```
-Overloads:
-    str a, int b: a[b]
-    int a, str b: b[a]
-    a, b (all: str|int): a[b]
-```
 ## `s` Slice
 Slice a string
 - Arity: 3

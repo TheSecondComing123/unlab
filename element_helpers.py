@@ -118,3 +118,15 @@ def negate(a: int):
 
 def index(a: str, b: int):
     return a[b]
+
+
+def slice(a: str, b: int, c: int):
+    return a[b:c]
+
+
+def head(a: str, b: int):
+    return a[:b]
+
+
+def tail(a: str, b: int):
+    return a[b:]

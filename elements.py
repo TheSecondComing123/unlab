@@ -26,5 +26,8 @@ elements = {
     "!": Element(arity=1, func=ExclamationMark),
     "¡": Element(arity=1, func=InversExclamation),
     "□": Element(arity=1, func=HollowSquare),
-    "i": Element(arity=2, func=Index)
+    "i": Element(arity=2, func=Index),
+    "s": Element(arity=3, func=Slice),
+    "h": Element(arity=2, func=Head),
+    "t": Element(arity=2, func=Tail)
 }
