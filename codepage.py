@@ -1,8 +1,10 @@
-FUNCTIONS = ["+", "-", "×", "÷", "ⁱ", "g", "¶", "Đ", "Ŋ", "Ƣ", "!", "¡", "□", "i"]
+FUNCTIONS = []
+FUNCTIONS += ["+", "-", "×", "÷", "ⁱ", "g", "¶", "Đ"]
+FUNCTIONS += ["Ŋ", "Ƣ", "!", "¡", "□", "i", "s", "t"]
+FUNCTIONS += ["h"]
 
 INDICATORS = ["↹", "{", "}"]
 
 codepage = FUNCTIONS + INDICATORS
-codepage += [chr(x) for x in range(32, 126+1)]
 
 assert len(codepage) <= 256
