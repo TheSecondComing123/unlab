@@ -123,8 +123,7 @@ def HollowSquare(a, ctx=None):
 
 
 def Index(a, b, ctx=None):
-    if typecheck(args=[a, b], types=[str, Rational]):
-        return index(a, b)
+    return index(safe_cast(a, str), safe_cast(b, int))
 
 
 def Slice(a, b, c, ctx=None):

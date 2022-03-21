@@ -3,6 +3,8 @@ from typing import Union
 from tokenizer import Token, TokenType
 from collections import Counter
 
+from element_helpers import addascii
+
 TokenList = Union[Token, list[Token]]
 Literals = [TokenType.NUMBER, TokenType.STRING]
 Rational = (int, float)
@@ -43,3 +45,18 @@ def typecheck(args: list, types: list, *, ordered=True):
 def typecheck_any(arg: Union[int, str], types: list):
     types = [typecheck(args=[arg], types=[typ]) for typ in types]
     return any(types)
+
+
+def safe_cast(x, typeval):
+    if typeval not in {str, int}:
+        raise TypeError("typeval can only be str or int (currently)")
+    if not typecheck(args=[x], types=[str, int]):
+        raise TypeError("x can only be str or int (currently)")
+
+    if typeval is str:
+        return str(x)
+    elif typeval is int:
+        try:
+            return int(x)
+        except TypeError:
+            return addascii(0, x)
