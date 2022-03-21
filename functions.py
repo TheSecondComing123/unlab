@@ -127,15 +127,14 @@ def Index(a, b, ctx=None):
 
 
 def Slice(a, b, c, ctx=None):
-    if typecheck(args=[a, b, c], types=[str, Rational, Rational]):
-        return slice(a, b, c)
+    return slice(safe_cast(a, str),
+                 safe_cast(b, int),
+                 safe_cast(c, int))
 
 
 def Head(a, b, ctx=None):
-    if typecheck(args=[a, b], types=[str, Rational]):
-        return head(a, b)
+    return head(safe_cast(a, str), safe_cast(b, int))
 
 
 def Tail(a, b, ctx=None):
-    if typecheck(args=[a, b], types=[str, Rational]):
-        return tail(a, b)
+    return tail(safe_cast(a, str), safe_cast(b, int))
