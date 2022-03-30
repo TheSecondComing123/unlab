@@ -19,37 +19,37 @@ class ForLoop:
         return f"ForLoop(number={self.number}, body={self.body})"
 
 
-def structure_forLoop(tokens):
-    """
-    Groups tokens together to structures
-    """
+def helper(string):
+    # Todo: handle errors
+    n = 1
 
-    loop_started = 0
-    loop_content = []
-    loop_number = Token(TokenType.NUMBER, 10)
+    for i in range(len(string)):
+        if string[i] == "(":
+            n += 1
+        if string[i] == ")":
+            n -= 1
+        if n == 0:
+            return i
 
-    structured_tokens = []
 
-    for token in tokens:
-        if token.value == "↹":
-            loop_started = 1  # stage 1, outside {}
-        elif token.value == "{":
-            loop_started = 2  # stage 2, inside {}
-        elif token.value == "}":  # end of loop
-            structured_tokens.append(ForLoop(loop_number, loop_content))
+def structure_forLoop(string):
+    result = []
+    i = 0
 
-            loop_started = 0
-            loop_content = []
-            loop_number = Token(TokenType.NUMBER, 10)
+    while i < len(string):
+        h = string[i]
+
+        if h == "W":
+            body = helper(string[3 + i:])
+            result += [(string[i + 1], helper(string[3 + i:body + 3 + i]))]
+            i += body + 3
         else:
-            if loop_started == 1:
-                loop_number = token  # loop number
-            elif loop_started == 2:
-                loop_content.append(token)  # loop body
-            elif loop_started == 0:  # outside loop
-                structured_tokens.append(token)
+            result.append([h])
 
-    return structured_tokens
+        i += 1
+
+    return result
+
 
 def structure(tokens):
     return structure_forLoop(tokens)
