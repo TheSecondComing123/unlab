@@ -1,8 +1,5 @@
-"""Structure.py
-File for grouping together tokens to structures
-"""
-from collections import deque
 from tokenizer import Token, TokenType, tokenize
+from collections import deque
 
 
 class ForLoop:
@@ -23,7 +20,7 @@ class ForLoop:
         return f"ForLoop(number={self.number}, body={self.body})"
 
 
-def structure_forloop(tokens):
+def structure_forLoop(tokens):
     """
     Groups tokens together to structures
     """
@@ -47,13 +44,12 @@ def structure_forloop(tokens):
             tokens_copy = list(tokens_deque.copy())
 
             for index in range(len(tokens_copy) - 1, 0, -1):
-                tokens_deque.popleft()
                 if tokens_copy[index].value == "}":
                     close_bracket = index
                     break
+                tokens_deque.popleft()
 
-            loop_content = structure_forloop(tokens_copy[:close_bracket])
-            print(loop_content)
+            loop_content = structure_forLoop(tokens_copy[:close_bracket])
 
         elif token.value == "}":  # end of loop
             structured_tokens.append(ForLoop(loop_number, loop_content))
@@ -73,8 +69,7 @@ def structure_forloop(tokens):
 
 
 def structure(tokens):
-    """Function to run all structure operations"""
-    return structure_forloop(tokens)
+    return structure_forLoop(tokens)
 
 
 if __name__ == "__main__":
