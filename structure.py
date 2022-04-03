@@ -33,19 +33,28 @@ def get_bracket_index(token_list):
     return index
 
 
-def structure_forLoop(token_list: list[Token]):
+def structure_forLoop(token_list: list[Token], main=True):
+    if main:
+        tokens_copy = list(token_list)
+        for index, token in enumerate(token_list):
+            if token.value == "↹" and token_list[index + 1].value == "{":
+                tokens_copy.insert(index + 1, Token(TokenType.NUMBER, 10))
+
+        token_list = list(tokens_copy)
+
     output_lst = []
     index = 0
     while index < len(token_list):
         token = token_list[index]
 
         if token.value == "↹":
+
             bracket_index = get_bracket_index(token_list[3 + index :])
             output_lst += [
                 ForLoop(
                     token_list[index + 1],
                     structure_forLoop(
-                        token_list[3 + index : bracket_index + 3 + index]
+                        token_list[3 + index : bracket_index + 3 + index], main=False
                     ),
                 )
             ]
@@ -64,4 +73,4 @@ def structure(tokens):
 
 
 if __name__ == "__main__":
-    print(structure(tokenize("2↹4{1↹7{9}}5")))
+    print(structure(tokenize("2↹4{1↹{9}}5")))
