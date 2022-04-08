@@ -73,4 +73,4 @@ def structure(tokens):
 
 
 if __name__ == "__main__":
-    print(structure(tokenize("2↹4{1↹{9}}5")))
+    print(structure(tokenize("3↹2{1↹{9}}5")))
