@@ -11,7 +11,7 @@ def unpack_forLoop(tokens):
             unpacked_tokens.append(token)
         elif isinstance(token, ForLoop):
             for _ in range(token.number.value):
-                unpacked_tokens.extend(token.body)
+                unpacked_tokens.extend(unpack_forLoop(token.body))
 
     return unpacked_tokens
 
@@ -21,4 +21,4 @@ def unpack(tokens):
 
 
 if __name__ == "__main__":
-    print(unpack(structure(tokenize("+2 3↹4{¶1} 5"))))
+    print(unpack(structure(tokenize("3↹2{1↹{9}}5"))))

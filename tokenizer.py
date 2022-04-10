@@ -51,7 +51,8 @@ class Token:
         self.value = value
 
     def __repr__(self):
-        return f"Token(name={self.name}, value={repr(self.value)})"  # {self.value} for debugging
+        # return f"Token(name={self.name}, value={repr(self.value)})"  # {self.value} for debugging
+        return f"Token({repr(self.value)})"  # {self.value} for debugging
 
 
 def tokenize(text: str) -> list[Token]:
