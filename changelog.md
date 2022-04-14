@@ -1,3 +1,6 @@
+Update 4/10/2022:
+- For loops are working now.
+
 Update 3/12/2022:
 - Added the uppercase/increment element. (!)
 

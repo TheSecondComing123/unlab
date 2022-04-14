@@ -37,13 +37,13 @@ ctx = Context()  # Set ctx to Context() at first (and as a default)
 def Add(a, b, ctx=ctx):
     """Addition/Concatenation"""
     if typecheck(args=[a, b], types=[Rational, Rational]):
-        return add(safe_cast(a, int), safe_cast(b, int))
+        return add(a, b)
     elif typecheck(args=[a, b], types=[str, str]):
-        return concat(safe_cast(a, str), safe_cast(b, str))
+        return concat(a, b)
     elif typecheck(args=[a, b], types=[str, Rational]):
-        return concat(safe_cast(a, str), safe_cast(b, str))
+        return concat(a, b)
     elif typecheck(args=[a, b], types=[Rational, str]):
-        return addascii(safe_cast(a, int), safe_cast(b, str))
+        return addascii(a, b)
 
 
 def Sub(a, b, ctx=ctx):
