@@ -1,9 +1,8 @@
 import itertools
 from typing import Union, Callable, Iterable
+from helper import Rational
 
-from sys import stdin
-
-Number = Union[int, float]
+Number = Rational  # backwards compatibility
 
 
 def add(a: Number, b: Number):
