@@ -3,12 +3,13 @@ from typing import Union
 from tokenizer import Token, TokenType
 from collections import Counter
 
-from element_helpers import addascii
-
 TokenList = Union[Token, list[Token]]
 Literals = [TokenType.NUMBER, TokenType.STRING]
-Rational = (int, float)
+Rational = Union[int, float]
+Number = Rational  # backwards compatibility
 
+def addascii(a: Number, b: str):
+    return a + sum(map(ord, b))
 
 def gettypes(*a):
     """
