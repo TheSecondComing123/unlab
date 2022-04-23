@@ -1,8 +1,6 @@
 import itertools
 from typing import Union, Callable, Iterable
-from helper import Rational
-
-Number = Rational  # backwards compatibility
+from helper import Number
 
 
 def add(a: Number, b: Number):
