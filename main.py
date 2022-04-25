@@ -8,6 +8,9 @@ parser = argparse.ArgumentParser(description="CLI for Excuting Noxan")
 parser.add_argument(
     "--code", "-c", type=str, help="optional argument to pass code/file name"
 )
+parser.add_argument(
+    'filename', nargs="?"
+)
 
 
 def main(code):
@@ -25,6 +28,8 @@ def cli():
     args = parser.parse_args()
     if args.code:
         print(main(args.code))
+    elif args.filename is not None:
+        main(open(args.filename).readlines())
     else:
         shell()
 
