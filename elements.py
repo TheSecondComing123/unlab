@@ -29,5 +29,6 @@ elements = {
     "i": Element(arity=2, func=Index),
     "s": Element(arity=3, func=Slice),
     "h": Element(arity=2, func=Head),
-    "t": Element(arity=2, func=Tail)
+    "t": Element(arity=2, func=Tail),
+    "½": Element(arity=1, func=Halve)
 }

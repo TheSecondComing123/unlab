@@ -138,3 +138,10 @@ def Head(a, b, ctx=None):
 
 def Tail(a, b, ctx=None):
     return tail(safe_cast(a, str), safe_cast(b, int))
+
+
+def Halve(a, ctx=None):
+    if typecheck(args=[a], types=[int]):
+        return divide(a, 2)
+    elif typecheck(args=[a], types=[str]):
+        return halvestr(a)

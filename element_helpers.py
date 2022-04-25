@@ -127,3 +127,7 @@ def head(a: str, b: int):
 
 def tail(a: str, b: int):
     return a[b:]
+
+
+def halvestr(a: str):
+    return a[:len(a) // 2]

@@ -1,7 +1,7 @@
 FUNCTIONS = []
 FUNCTIONS += ["+", "-", "×", "÷", "ⁱ", "g", "¶", "Đ"]
 FUNCTIONS += ["Ŋ", "Ƣ", "!", "¡", "□", "i", "s", "t"]
-FUNCTIONS += ["h"]
+FUNCTIONS += ["h", "½"]
 
 INDICATORS = ["↹", "{", "}"]
 
