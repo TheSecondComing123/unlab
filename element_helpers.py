@@ -27,7 +27,6 @@ def concat(a: str, b: str):
     """Concat two strings"""
     return a + b
 
-
 def interleave(a: list, b: list):
     """Interleave a and b (two iterables)"""
 
